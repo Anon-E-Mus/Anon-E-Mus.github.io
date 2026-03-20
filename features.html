@@ -23,6 +23,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://raudracosmos.com/features.html">
@@ -128,15 +131,21 @@
             border-color: rgba(249,212,35,0.3);
         }
         .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #6B5B95, #FF4E50);
-            border-radius: 10px;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            background: rgba(107, 91, 149, 0.1);
+            border: 1px solid rgba(107, 91, 149, 0.2);
+            border-radius: 16px;
+            font-size: 1.25rem;
+            color: #6B5B95;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
         }
         .feature-name {
             font-family: 'Orbitron', sans-serif;
@@ -166,6 +175,22 @@
         .status-planned {
             background: rgba(100,100,255,0.2);
             color: #6464ff;
+        }
+        /* Status-specific icon colors */
+        .feature-card.implemented .feature-icon {
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            border-color: rgba(76, 175, 80, 0.2);
+        }
+        .feature-card.partial .feature-icon {
+            color: #FFC107;
+            background: rgba(255, 193, 7, 0.1);
+            border-color: rgba(255, 193, 7, 0.2);
+        }
+        .feature-card.planned .feature-icon {
+            color: #9E9E9E;
+            background: rgba(158, 158, 158, 0.1);
+            border-color: rgba(158, 158, 158, 0.2);
         }
         .highlight-box {
             background: linear-gradient(145deg, rgba(255,78,80,0.1) 0%, rgba(5,5,5,0.9) 100%);
@@ -221,6 +246,16 @@
     </style>
 </head>
 <body>
+    <!-- Star Field Canvas -->
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- Nebula Overlay -->
+    <div class="nebula-overlay">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+
     <header>
         <div class="container">
             <a href="index.html" class="nav-back">
@@ -260,37 +295,37 @@
         <section class="feature-section">
             <h2 class="section-title"><i class="fa-solid fa-dice-d20"></i> Fair Gacha Summoning System</h2>
             <div class="feature-grid">
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-gift"></i></div>
                     <h3 class="feature-name">Normal Summons</h3>
                     <p class="feature-desc">Standard banner pulls using free currency. Accessible for all players.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
                     <h3 class="feature-name">Advanced Summons</h3>
                     <p class="feature-desc">Premium currency summons with better rates and exclusive cards.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
                     <h3 class="feature-name">Friendship Summons</h3>
                     <p class="feature-desc">Free summons using friend points earned through co-op play.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-star"></i></div>
                     <h3 class="feature-name">Featured Banners</h3>
                     <p class="feature-desc">Limited-time events with rate-up for specific deities.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
                     <h3 class="feature-name">Dual Pity System</h3>
                     <p class="feature-desc">Guaranteed SSR at 50 pulls and UR at 100 pulls. Fair and transparent.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
                     <h3 class="feature-name">Crypto-Secure RNG</h3>
                     <p class="feature-desc">Server-side fair randomness with verifiable pull results.</p>
@@ -303,25 +338,25 @@
         <section class="feature-section">
             <h2 class="section-title"><i class="fa-solid fa-arrow-up-right-dots"></i> Character Progression Systems</h2>
             <div class="feature-grid">
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-level-up-alt"></i></div>
                     <h3 class="feature-name">Level Up</h3>
                     <p class="feature-desc">Max level 200 with scaling XP requirements. Boost all base stats.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-crown"></i></div>
                     <h3 class="feature-name">Advance Rank</h3>
                     <p class="feature-desc">9 ranks using Authority currency. Unlock powerful passive abilities.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-circle-up"></i></div>
                     <h3 class="feature-name">Ascend</h3>
                     <p class="feature-desc">7 ascension ranks using duplicate cards. Massive stat increases.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
                     <h3 class="feature-name">Power Level</h3>
                     <p class="feature-desc">Dynamic power calculation based on all progression systems.</p>
@@ -334,25 +369,25 @@
         <section class="feature-section">
             <h2 class="section-title"><i class="fa-solid fa-shield-halved"></i> Equipment & Runes</h2>
             <div class="feature-grid">
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-khanda"></i></div>
                     <h3 class="feature-name">4 Equipment Slots</h3>
                     <p class="feature-desc">Weapon, Armor, Helmet, Boots - each with unique stat bonuses.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-fire"></i></div>
                     <h3 class="feature-name">8 Gear Sets</h3>
                     <p class="feature-desc">Set bonuses for equipping multiple pieces of the same set.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
                     <h3 class="feature-name">10 Rune Sets</h3>
                     <p class="feature-desc">2-piece and 4-piece rune bonuses for customization.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-hammer"></i></div>
                     <h3 class="feature-name">Enhancement (+0 to +15)</h3>
                     <p class="feature-desc">Upgrade equipment for increased stats and power.</p>
@@ -365,37 +400,37 @@
         <section class="feature-section">
             <h2 class="section-title"><i class="fa-solid fa-users"></i> Social & Multiplayer</h2>
             <div class="feature-grid">
-                <div class="feature-card">
+                <div class="feature-card partial">
                     <div class="feature-icon"><i class="fa-solid fa-people-group"></i></div>
                     <h3 class="feature-name">Guild System</h3>
                     <p class="feature-desc">Create or join guilds. Chat, donate, and prepare for cooperative raids.</p>
                     <span class="status-badge status-progress">In Progress</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card implemented">
                     <div class="feature-icon"><i class="fa-solid fa-comments"></i></div>
                     <h3 class="feature-name">Real-Time Chat</h3>
                     <p class="feature-desc">WebSocket-based guild and global chat with whisper support.</p>
                     <span class="status-badge status-complete">Live</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card planned">
                     <div class="feature-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
                     <h3 class="feature-name">Guild Boss Raids</h3>
                     <p class="feature-desc">Cooperative PvE battles against powerful mythological bosses.</p>
                     <span class="status-badge status-planned">Planned</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card planned">
                     <div class="feature-icon"><i class="fa-solid fa-swords"></i></div>
                     <h3 class="feature-name">Guild Wars</h3>
                     <p class="feature-desc">Guild vs Guild competitive battles for territory and rewards.</p>
                     <span class="status-badge status-planned">Planned</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card partial">
                     <div class="feature-icon"><i class="fa-solid fa-user-group"></i></div>
                     <h3 class="feature-name">Friends System</h3>
                     <p class="feature-desc">Add friends, send gifts, and co-op together.</p>
                     <span class="status-badge status-progress">In Progress</span>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card planned">
                     <div class="feature-icon"><i class="fa-solid fa-trophy"></i></div>
                     <h3 class="feature-name">PvP Arena</h3>
                     <p class="feature-desc">Ranked competitive card battles against other players.</p>
@@ -458,5 +493,7 @@
             <p class="copyright">© 2026 Raudra Cosmos. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

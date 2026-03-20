@@ -191,6 +191,78 @@ ul, ol {
 }
 
 /* ============================================
+   STARFIELD & NEBULA (For All Pages)
+   ============================================ */
+
+.starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-starfield);
+    pointer-events: none;
+}
+
+.nebula-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-nebula);
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.nebula {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: nebulaFloat 30s ease-in-out infinite;
+}
+
+.nebula-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(107,91,149,0.3) 0%, transparent 70%);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.nebula-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,78,80,0.2) 0%, transparent 70%);
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 10s;
+}
+
+.nebula-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(249,212,35,0.15) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 20s;
+}
+
+@keyframes nebulaFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+/* Content z-index fix for pages with starfield */
+body {
+    position: relative;
+    z-index: var(--z-content);
+}
+
+/* ============================================
    3. PRELOADER STYLES
    ============================================ */
 

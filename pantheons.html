@@ -23,6 +23,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://raudracosmos.com/pantheons.html">
@@ -211,6 +214,16 @@
     </style>
 </head>
 <body>
+    <!-- Star Field Canvas -->
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- Nebula Overlay -->
+    <div class="nebula-overlay">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+
     <header>
         <div class="container">
             <a href="index.html" class="nav-back">
@@ -428,5 +441,7 @@
             <p class="copyright">© 2026 Raudra Cosmos. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
