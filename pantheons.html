@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore all 7 pantheons in Raudra Cosmos - Hindu, Norse, Egyptian, Greek, Shinto, Taoist, and Babylonian gods. Collect 250+ deity cards in this mythological TCG.">
+    <meta name="keywords" content="Hindu mythology game, Norse mythology game, Egyptian mythology game, Greek gods game, Shinto game, Taoist mythology, Babylonian gods, mythological TCG, pantheon card game">
+    <meta name="theme-color" content="#050505">
+    <meta name="author" content="Raudra Cosmos Games">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://raudracosmos.com/pantheons.html">
+
+    <title>All Pantheons | Hindu, Norse, Egyptian & Greek Gods - Raudra Cosmos TCG</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="tab_icon.png" sizes="any">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://raudracosmos.com/pantheons.html">
+    <meta property="og:title" content="All 7 Pantheons | Hindu, Norse, Egyptian Gods - Raudra Cosmos TCG">
+    <meta property="og:description" content="Discover 250+ deity cards from 7 legendary pantheons. Hindu gods like Shiva, Norse gods like Thor, Egyptian gods like Ra, and more in this mythological TCG.">
+    <meta property="og:site_name" content="Raudra Cosmos">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Raudra Cosmos - All Pantheons",
+      "description": "Complete guide to all 7 pantheons in Raudra Cosmos TCG featuring 250+ collectible deity cards from Hindu, Norse, Egyptian, Greek, Shinto, Taoist, and Babylonian mythology.",
+      "url": "https://raudracosmos.com/pantheons.html"
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #050505;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, rgba(107,91,149,0.3) 0%, transparent 100%);
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #F9D423;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6B5B95;
+            margin-bottom: 20px;
+        }
+        .description {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #aaa;
+        }
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #6B5B95;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+        .nav-back:hover {
+            color: #F9D423;
+        }
+        .pantheon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+        .pantheon-card {
+            background: linear-gradient(145deg, rgba(107,91,149,0.1) 0%, rgba(5,5,5,0.9) 100%);
+            border: 1px solid rgba(107,91,149,0.3);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pantheon-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color1), var(--color2));
+        }
+        .pantheon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(107,91,149,0.2);
+        }
+        .pantheon-card.hindu { --color1: #FF4E50; --color2: #F9D423; }
+        .pantheon-card.norse { --color1: #6B5B95; --color2: #9B89B3; }
+        .pantheon-card.egyptian { --color1: #F9D423; --color2: #DEB887; }
+        .pantheon-card.greek { --color1: #6B5B95; --color2: #87CEEB; }
+        .pantheon-card.shinto { --color1: #FF4E50; --color2: #FFB6C1; }
+        .pantheon-card.taoist { --color1: #6B5B95; --color2: #98FB98; }
+        .pantheon-card.babylonian { --color1: #F9D423; --color2: #CD5C5C; }
+
+        .pantheon-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--color1), var(--color2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .pantheon-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .pantheon-origin {
+            color: #6B5B95;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .pantheon-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .deity-count {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #F9D423;
+            font-weight: 600;
+        }
+        .notable-deities {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(107,91,149,0.2);
+        }
+        .notable-label {
+            font-size: 0.8rem;
+            color: #6B5B95;
+            margin-bottom: 8px;
+        }
+        .deity-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .deity-tag {
+            background: rgba(107,91,149,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #ddd;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(107,91,149,0.2);
+            margin-top: 60px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #6B5B95;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: #F9D423;
+        }
+        .copyright {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="nav-back">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Home
+            </a>
+            <h1>All Pantheons</h1>
+            <p class="subtitle">250+ Deities from 7 Legendary Mythologies</p>
+            <p class="description">
+                Collect powerful god and goddess cards from the world's most iconic pantheons.
+                Each deity features unique skills, elements, and abilities in this strategic TCG.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="pantheon-grid">
+            <!-- Hindu Pantheon -->
+            <article class="pantheon-card hindu" itemscope itemtype="https://schema.org/Thing">
+                <meta itemprop="name" content="Hindu Pantheon">
+                <div class="pantheon-icon"><i class="fa-solid fa-om"></i></div>
+                <h2 class="pantheon-name" itemprop="name">Hindu Pantheon</h2>
+                <p class="pantheon-origin">Ancient India</p>
+                <p class="pantheon-desc" itemprop="description">
+                    Featuring powerful deities like Shiva the Destroyer, Indra the King of Gods,
+                    and Ganesha the Remover of Obstacles. Master cosmic forces with divine avatars.
+                </p>
+                <div class="deity-count">
+                    <i class="fa-solid fa-users"></i>
+                    <span>50+ Collectible Deities</span>
+                </div>
+                <div class="notable-deities">
+                    <p class="notable-label">Notable Deities:</p>
+                    <div class="deity-tags">
+                        <span class="deity-tag">Shiva</span>
+                        <span class="deity-tag">Vishnu</span>
+                        <span class="deity-tag">Durga</span>
+                        <span class="deity-tag">Ganesha</span>
+                        <span class="deity-tag">Kali</span>
+                        <span class="deity-tag">Hanuman</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Norse Pantheon -->
+            <article class="pantheon-card norse" itemscope itemtype="https://schema.org/Thing">
+                <meta itemprop="name" content="Norse Pantheon">
+                <div class="pantheon-icon"><i class="fa-solid fa-hammer"></i></div>
+                <h2 class="pantheon-name" itemprop="name">Norse Pantheon</h2>
+                <p class="pantheon-origin">Scandinavia</p>
+                <p class="pantheon-desc" itemprop="description">
+                    Command the might of Thor's hammer, Odin's wisdom, and Loki's trickery.
+                    Norse gods bring thunder, war, and cunning strategies to your deck.
+                </p>
+                <div class="deity-count">
+                    <i class="fa-solid fa-users"></i>
+                    <span>40+ Collectible Deities</span>
+                </div>
+                <div class="notable-deities">
+                    <p class="notable-label">Notable Deities:</p>
+                    <div class="deity-tags">
+                        <span class="deity-tag">Thor</span>
+                        <span class="deity-tag">Odin</span>
+                        <span class="deity-tag">Loki</span>
+                        <span class="deity-tag">Freya</span>
+                        <span class="deity-tag">Tyr</span>
+                        <span class="deity-tag">Hel</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Egyptian Pantheon -->
+            <article class="pantheon-card egyptian" itemscope itemtype="https://schema.org/Thing">
+                <meta itemprop="name" content="Egyptian Pantheon">
+                <div class="pantheon-icon"><i class="fa-solid fa-sun"></i></div>
+                <h2 class="pantheon-name" itemprop="name">Egyptian Pantheon</h2>
+                <p class="pantheon-origin">Ancient Egypt</p>
+                <p class="pantheon-desc" itemprop="description">
+                    Harness the power of the sun god Ra, the wisdom of Thoth,
+                    and the protection of Isis. Egyptian deities control life, death, and resurrection.
+                </p>
+                <div class="deity-count">
+                    <i class="fa-solid fa-users"></i>
+                    <span>35+ Collectible Deities</span>
+                </div>
+                <div class="notable-deities">
+                    <p class="notable-label">Notable Deities:</p>
+                    <div class="deity-tags">
+                        <span class="deity-tag">Ra</span>
+                        <span class="deity-tag">Anubis</span>
+                        <span class="deity-tag">Isis</span>
+                        <span class="deity-tag">Osiris</span>
+                        <span class="deity-tag">Thoth</span>
+                        <span class="deity-tag">Bastet</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Greek/Olympian Pantheon -->
+            <article class="pantheon-card greek" itemscope itemtype="https://schema.org/Thing">
+                <meta itemprop="name" content="Olympian Pantheon">
+                <div class="pantheon-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                <h2 class="pantheon-name" itemprop="name">Olympian Pantheon</h2>
+                <p class="pantheon-origin">Ancient Greece</p>
+                <p class="pantheon-desc" itemprop="description">
+                    Wield Zeus's lightning, Athena's strategy, and Ares's battle prowess.
+                    The Olympians offer balanced power with gods of war, wisdom, and sea.
+                </p>
+                <div class="deity-count">
+                    <i class="fa-solid fa-users"></i>
+                    <span>45+ Collectible Deities</span>
+                </div>
+                <div class="notable-deities">
+                    <p class="notable-label">Notable Deities:</p>
+                    <div class="deity-tags">
+                        <span class="deity-tag">Zeus</span>
+                        <span class="deity-tag">Hera</span>
+                        <span class="deity-tag">Athena</span>
+                        <span class="deity-tag">Apollo</span>
+                        <span class="deity-tag">Ares</span>
+                        <span class="deity-tag">Poseidon</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Shinto Pantheon -->
+            <article class="pantheon-card shinto" itemscope itemtype="https://schema.org/Thing">
+                <meta itemprop="name" content="Shinto Pantheon">
+                <div class="pantheon-icon"><i class="fa-solid fa-torii-gate"></i></div>
+                <h2 class="pantheon-name" itemprop="name">Shinto Pantheon</h2>
+                <p class="pantheon-origin">Japan</p>
+                <p class="pantheon-desc" itemprop="description">
+                    Call upon Amaterasu's divine light, Susanoo's storms, and the spirits of nature.
+                    Japanese kami bring harmony between mortals and the divine.
+                </p>
+                <div class="deity-count">
+                    <i class="fa-solid fa-users"></i>
+                    <span>35+ Collectible Deities</span>
+                </div>
+                <div class="notable-deities">
+                    <p class="notable-label">Notable Deities:</p>
+                    <div class="deity-tags">
+                        <span class="deity-tag">Amaterasu</span>
+                        <span class="deity-tag">Susanoo</span>
+                        <span class="deity-tag">Tsukuyomi</span>
+                        <span class="deity-tag">Inari</span>
+                        <span class="deity-tag">Raijin</span>
+                        <span class="deity-tag">Fujin</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Taoist Pantheon -->
+            <article class="pantheon-card taoist" itemscope itemtype="https://schema.org/Thing">
+                <meta itemprop="name" content="Taoist Pantheon">
+                <div class="pantheon-icon"><i class="fa-solid fa-yin-yang"></i></div>
+                <h2 class="pantheon-name" itemprop="name">Taoist Pantheon</h2>
+                <p class="pantheon-origin">China</p>
+                <p class="pantheon-desc" itemprop="description">
+                    Master the flow of qi with the Jade Emperor, Guan Yu's loyalty,
+                    and the Eight Immortals. Taoist deities embody balance, longevity, and wisdom.
+                </p>
+                <div class="deity-count">
+                    <i class="fa-solid fa-users"></i>
+                    <span>30+ Collectible Deities</span>
+                </div>
+                <div class="notable-deities">
+                    <p class="notable-label">Notable Deities:</p>
+                    <div class="deity-tags">
+                        <span class="deity-tag">Jade Emperor</span>
+                        <span class="deity-tag">Guan Yu</span>
+                        <span class="deity-tag">Nezha</span>
+                        <span class="deity-tag">Erlang Shen</span>
+                        <span class="deity-tag">Monkey King</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Babylonian Pantheon -->
+            <article class="pantheon-card babylonian" itemscope itemtype="https://schema.org/Thing">
+                <meta itemprop="name" content="Babylonian Pantheon">
+                <div class="pantheon-icon"><i class="fa-solid fa-gopuram"></i></div>
+                <h2 class="pantheon-name" itemprop="name">Babylonian Pantheon</h2>
+                <p class="pantheon-origin">Mesopotamia</p>
+                <p class="pantheon-desc" itemprop="description">
+                    Unleash Marduk's primordial power, Ishtar's love and war,
+                    and Gilgamesh's legendary might. The oldest pantheon brings ancient fury.
+                </p>
+                <div class="deity-count">
+                    <i class="fa-solid fa-users"></i>
+                    <span>25+ Collectible Deities</span>
+                </div>
+                <div class="notable-deities">
+                    <p class="notable-label">Notable Deities:</p>
+                    <div class="deity-tags">
+                        <span class="deity-tag">Marduk</span>
+                        <span class="deity-tag">Ishtar</span>
+                        <span class="deity-tag">Gilgamesh</span>
+                        <span class="deity-tag">Tiamat</span>
+                        <span class="deity-tag">Enkidu</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#gameFeatures">Features</a>
+                <a href="index.html#devlogs">Devlogs</a>
+                <a href="index.html#newsletter">Newsletter</a>
+            </div>
+            <p class="copyright">© 2026 Raudra Cosmos. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
