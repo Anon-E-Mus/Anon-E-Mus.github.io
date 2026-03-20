@@ -277,7 +277,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: var(--z-preloader);
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
 .preloader.loaded {
@@ -299,7 +299,7 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 40px;
-    animation: preloaderPulse 2s ease-in-out infinite;
+    animation: preloaderPulse 1.5s ease-in-out infinite;
 }
 
 .preloader-bar {
@@ -315,7 +315,7 @@ body {
     height: 100%;
     background: var(--gradient-fire);
     border-radius: var(--radius-full);
-    animation: preloaderProgress 2s ease-in-out forwards;
+    animation: preloaderProgress 1s ease-out forwards;
 }
 
 .preloader-text {
@@ -334,6 +334,16 @@ body {
 @keyframes preloaderProgress {
     0% { width: 0%; }
     100% { width: 100%; }
+}
+
+/* Page Content Fade-in */
+.page-content-wrapper {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.page-content-wrapper.visible {
+    opacity: 1;
 }
 
 /* ============================================

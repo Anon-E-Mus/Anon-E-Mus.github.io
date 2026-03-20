@@ -512,100 +512,31 @@ class CharacterSlider {
 }
 
 // ============================================
-// 6. NEWSLETTER FORM (EmailJS - No Redirect!)
+// 6. NEWSLETTER FORM
 // ============================================
 
 class NewsletterForm {
     constructor() {
         this.form = document.getElementById('newsletterForm');
         if (!this.form) return;
-
-        // EmailJS Credentials
-        this.serviceID = 'service_ggqiykl';
-        this.templateID = 'template_3jrcmtn';
-        this.publicKey = 'CLzev1gxp_2CuTUXd';
-
         this.init();
     }
 
     init() {
-        // Initialize EmailJS
-        if (typeof emailjs !== 'undefined') {
-            emailjs.init(this.publicKey);
-        }
-
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
 
-    async handleSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
 
-        const email = this.form.querySelector('input[name="email"]').value;
-        const btn = this.form.querySelector('.form-submit');
-        const originalHTML = btn.innerHTML;
+        const input = this.form.querySelector('input[type="email"]');
+        const email = input.value;
 
-        // Validate email
-        if (!this.isValidEmail(email)) {
+        if (this.isValidEmail(email)) {
+            this.showSuccess();
+            input.value = '';
+        } else {
             this.showError();
-            return;
-        }
-
-        // Show loading state
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Sending...</span>';
-        btn.disabled = true;
-
-        // Prepare parameters for email template
-        const timestamp = new Date().toISOString();
-        const dateReadable = new Date().toLocaleString('en-US', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        });
-
-        const templateParams = {
-            email: email,
-            timestamp: timestamp,
-            date: dateReadable,
-            source: 'website'
-        };
-
-        try {
-            const response = await emailjs.send(
-                this.serviceID,
-                this.templateID,
-                templateParams
-            );
-
-            if (response.status === 200) {
-                // Success
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Subscribed!</span>';
-                btn.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
-                this.form.reset();
-
-                setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                    btn.style.background = '';
-                    btn.disabled = false;
-                }, 3000);
-            } else {
-                throw new Error('Email not sent');
-            }
-        } catch (error) {
-            // Error
-            btn.innerHTML = '<i class="fa-solid fa-exclamation-triangle"></i> <span>Try Again</span>';
-            btn.style.background = 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)';
-
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.style.background = '';
-                btn.disabled = false;
-            }, 3000);
-
-            console.error('Newsletter error:', error);
         }
     }
 
@@ -613,8 +544,21 @@ class NewsletterForm {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
+    showSuccess() {
+        const btn = this.form.querySelector('.form-submit');
+        const originalHTML = btn.innerHTML;
+
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Subscribed!</span>';
+        btn.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
+
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.background = '';
+        }, 3000);
+    }
+
     showError() {
-        const input = this.form.querySelector('input[name="email"]');
+        const input = this.form.querySelector('input[type="email"]');
         input.style.borderColor = '#EF4444';
         input.classList.add('shake');
 
@@ -896,67 +840,6 @@ class App {
 
 // Start the app
 new App();
-
-// ============================================
-// NEWSLETTER SUBSCRIPTION (Direct Email)
-// ============================================
-
-function openSubscribeEmail() {
-    const emailInput = document.getElementById('subscribeEmail');
-    const email = emailInput.value.trim();
-    const destinationEmail = 'bandi.corp.dollar.1@gmail.com';
-
-    // Validate email
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        emailInput.style.borderColor = '#EF4444';
-        emailInput.classList.add('shake');
-        setTimeout(() => {
-            emailInput.style.borderColor = '';
-            emailInput.classList.remove('shake');
-        }, 2000);
-        return;
-    }
-
-    // Create timestamp in ISO format for easy parsing
-    const timestamp = new Date().toISOString();
-    const dateReadable = new Date().toLocaleString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-    });
-
-    // Format: [RAUDRA] Subscribe | user@email.com | 2026-03-18T14:30:00.000Z
-    const subject = encodeURIComponent(`[RAUDRA] Subscribe | ${email} | ${timestamp}`);
-
-    // Body format - easy to parse programmatically
-    // CSV-style: key:value pairs separated by pipes
-    const body = encodeURIComponent(
-        `RAUDRA COSMOS - Newsletter Signup\n` +
-        `Email:${email}\n` +
-        `Timestamp:${timestamp}\n` +
-        `Date:${dateReadable}\n` +
-        `Source:Website`
-    );
-
-    // Open email client
-    window.location.href = `mailto:${destinationEmail}?subject=${subject}&body=${body}`;
-
-    // Show success message
-    const btn = document.querySelector('.form-submit');
-    const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<i class="fa-solid fa-envelope"></i> <span>Email Opened</span>';
-    btn.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
-
-    setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.style.background = '';
-        emailInput.value = '';
-    }, 3000);
-}
 
 // ============================================
 // EXPORTS (if using modules)
