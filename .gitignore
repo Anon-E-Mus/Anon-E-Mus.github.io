@@ -1,0 +1,13 @@
+# Documentation files
+*.md
+!README.md
+
+# Old assets
+*_old.png
+*_old.*
+
+# Duplicate css folder (using root style.css)
+css/
+
+# Documentation folders
+docs/
