@@ -46,7 +46,7 @@
             --text-primary: #FFFFFF;
             --text-secondary: #B0B0B0;
             --gradient-fire: linear-gradient(135deg, var(--fierce-orange) 0%, var(--golden-amber) 100%);
-            --gradient-cosmic: linear-gradient(135deg, var(--cosmic-purple) 0%, #4A90D9 100%);
+            --gradient-cosmic: linear-gradient(135deg, #00CED1 0%, #4A90D9 100%);
             --z-content: 10;
         }
 
@@ -62,10 +62,12 @@
             padding: 20px;
             position: relative;
             z-index: var(--z-content);
+            background: rgba(10, 10, 15, 0.6);
+            backdrop-filter: blur(10px);
         }
 
         .devlogs-nav a {
-            color: var(--cosmic-purple);
+            color: #00CED1;
             text-decoration: none;
             font-family: var(--font-heading);
             font-weight: 600;
@@ -79,7 +81,8 @@
         .blog-hero {
             text-align: center;
             padding: 100px 20px 60px;
-            background: linear-gradient(180deg, rgba(231,76,60,0.2) 0%, transparent 100%);
+            background: rgba(10, 10, 15, 0.6);
+            backdrop-filter: blur(10px);
             position: relative;
             z-index: var(--z-content);
         }
@@ -93,7 +96,7 @@
         }
 
         .blog-meta span {
-            color: var(--cosmic-purple);
+            color: #00CED1;
             font-size: 0.9rem;
             font-family: var(--font-heading);
             font-weight: 600;
@@ -118,7 +121,12 @@
         .blog-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px 80px;
+            padding: 40px;
+            background: rgba(10, 10, 15, 0.88);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 206, 209, 0.25);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             position: relative;
             z-index: var(--z-content);
         }
@@ -176,7 +184,7 @@
         }
 
         .blog-nav a {
-            color: var(--cosmic-purple);
+            color: #00CED1;
             text-decoration: none;
             font-family: var(--font-heading);
             font-weight: 600;
@@ -250,7 +258,7 @@
         }
 
         .highlight-box {
-            background: rgba(231,76,60,0.1);
+            background: rgba(231, 76, 60, 0.12);
             border-left: 4px solid var(--fierce-orange);
             padding: 20px;
             margin: 30px 0;
@@ -291,6 +299,9 @@
                 flex-direction: column;
                 gap: 15px;
                 text-align: center;
+            }
+            .blog-content {
+                padding: 25px 20px;
             }
             .gear-grid {
                 grid-template-columns: 1fr;

@@ -40,14 +40,14 @@
             --font-body: 'Roboto', sans-serif;
             --deep-black: #050505;
             --rich-black: #0a0a0f;
-            --cosmic-purple: #6B5B95;
+            --cyan-bright: #00CED1;
             --fierce-orange: #FF4E50;
             --golden-amber: #F9D423;
             --text-primary: #FFFFFF;
             --text-secondary: #B0B0B0;
             --text-muted: #6B6B6B;
             --gradient-fire: linear-gradient(135deg, var(--fierce-orange) 0%, var(--golden-amber) 100%);
-            --gradient-cosmic: linear-gradient(135deg, var(--cosmic-purple) 0%, #4A90D9 100%);
+            --gradient-cosmic: linear-gradient(135deg, #00CED1 0%, #4A90D9 100%);
             --z-content: 10;
         }
 
@@ -63,10 +63,12 @@
             padding: 20px;
             position: relative;
             z-index: var(--z-content);
+            background: rgba(10, 10, 15, 0.6);
+            backdrop-filter: blur(10px);
         }
 
         .devlogs-nav a {
-            color: var(--cosmic-purple);
+            color: #00CED1;
             text-decoration: none;
             font-family: var(--font-heading);
             font-weight: 600;
@@ -80,6 +82,8 @@
         .devlogs-hero {
             text-align: center;
             padding: 100px 20px 60px;
+            background: rgba(10, 10, 15, 0.6);
+            backdrop-filter: blur(10px);
             position: relative;
             z-index: var(--z-content);
         }
@@ -130,7 +134,7 @@
         .divider-line {
             width: 60px;
             height: 1px;
-            background: var(--gradient-cosmic);
+            background: linear-gradient(135deg, #00CED1, #4A90D9);
         }
 
         .divider-dot {
@@ -166,7 +170,7 @@
             top: 50%;
             width: 15px;
             height: 1px;
-            background: var(--cosmic-purple);
+            background: #00CED1;
         }
 
         .section-title-gradient {
