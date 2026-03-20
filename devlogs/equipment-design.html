@@ -39,20 +39,6 @@
             --font-display: 'Orbitron', sans-serif;
             --font-heading: 'Rajdhani', sans-serif;
             --font-body: 'Roboto', sans-serif;
-            --deep-black: #050505;
-            --cyan-bright: #00CED1;
-            --cyan-glow: #00E5FF;
-            --fierce-orange: #FF4E50;
-            --orange-glow: #FF6B6B;
-            --golden-amber: #F9D423;
-            --gold-glow: #FFD700;
-            --purple-glow: #9B59B6;
-            --cosmic-purple: #6B5B95;
-            --text-primary: #FFFFFF;
-            --text-secondary: #D0D0D0;
-            --gradient-fire: linear-gradient(135deg, #FF4E50 0%, #F9D423 100%);
-            --gradient-cosmic: linear-gradient(135deg, #00CED1 0%, #4A90D9 50%, #9B59B6 100%);
-            --gradient-rainbow: linear-gradient(90deg, #FF4E50, #F9D423, #00CED1, #9B59B6, #FF4E50);
             --z-content: 10;
         }
 
@@ -68,93 +54,7 @@
             overflow-x: hidden;
         }
 
-        /* Reading Progress Bar */
-        .reading-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #FF4E50, #F9D423, #00CED1);
-            z-index: 9999;
-            transform-origin: left;
-        }
-
-        /* Aurora Background */
-        .aurora-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .aurora-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 30%, rgba(255, 78, 80, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, rgba(0, 206, 201, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(249, 212, 35, 0.08) 0%, transparent 50%);
-            animation: aurora-pulse 10s ease-in-out infinite alternate;
-        }
-
-        @keyframes aurora-pulse {
-            0% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-            100% { opacity: 0.6; transform: scale(1); }
-        }
-
-        /* Floating Orbs */
-        .floating-orbs {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: float-orb 25s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            width: 350px;
-            height: 350px;
-            background: rgba(255, 78, 80, 0.25);
-            top: 5%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 250px;
-            height: 250px;
-            background: rgba(0, 206, 201, 0.25);
-            top: 50%;
-            right: 5%;
-            animation-delay: -8s;
-        }
-
-        .orb-3 {
-            width: 300px;
-            height: 300px;
-            background: rgba(249, 212, 35, 0.2);
-            bottom: 10%;
-            left: 30%;
-            animation-delay: -15s;
-        }
-
-        @keyframes float-orb {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(40px, -40px) scale(1.15); }
-            50% { transform: translate(-30px, 30px) scale(0.85); }
-            75% { transform: translate(30px, 20px) scale(1.05); }
-        }
-
-        /* Enhanced Navigation */
+        /* Simple, elegant navigation */
         .devlogs-nav {
             display: flex;
             justify-content: center;
@@ -165,17 +65,17 @@
             z-index: 100;
             background: rgba(10, 10, 15, 0.7);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(107, 91, 149, 0.3);
             border-radius: 50px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
         .devlogs-nav a {
-            color: #00CED1;
+            color: var(--text-secondary);
             text-decoration: none;
             font-family: var(--font-heading);
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition-base);
             padding: 10px 20px;
             border-radius: 25px;
             display: flex;
@@ -184,369 +84,154 @@
         }
 
         .devlogs-nav a:hover {
-            background: rgba(0, 206, 201, 0.15);
-            color: #F9D423;
-            transform: translateY(-2px);
+            background: rgba(107, 91, 149, 0.2);
+            color: var(--fierce-orange);
         }
 
-        /* Hero Section */
+        /* Hero Section - Clean & Elegant */
         .blog-hero {
             text-align: center;
-            padding: 140px 20px 80px;
+            padding: 140px 20px 100px;
             position: relative;
             z-index: var(--z-content);
-            overflow: hidden;
         }
 
-        .blog-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at top, rgba(107,91,149,0.3) 0%, transparent 60%),
-                linear-gradient(180deg, rgba(10, 10, 15, 0.5) 0%, rgba(5, 5, 5, 0.9) 100%);
-            backdrop-filter: blur(10px);
-        }
-
-        .blog-hero::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255,78,80,0.08), transparent 30%);
-            animation: rotate-slow 40s linear infinite;
-        }
-
-        @keyframes rotate-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .blog-hero > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Enhanced Meta Tags */
         .blog-meta {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
 
         .blog-meta span {
-            background: rgba(0, 206, 201, 0.15);
-            border: 1px solid rgba(0, 206, 201, 0.4);
-            padding: 12px 24px;
+            background: rgba(107, 91, 149, 0.15);
+            border: 1px solid rgba(107, 91, 149, 0.3);
+            padding: 10px 20px;
             border-radius: 30px;
-            color: #00CED1;
+            color: var(--cosmic-purple-light);
             font-size: 0.9rem;
             font-family: var(--font-heading);
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 0 25px rgba(0, 206, 201, 0.25);
-            transition: all 0.3s ease;
+            gap: 8px;
+            transition: var(--transition-base);
         }
 
         .blog-meta span:hover {
-            background: rgba(0, 206, 201, 0.25);
-            box-shadow: 0 0 35px rgba(0, 206, 201, 0.4);
-            transform: translateY(-2px);
+            background: rgba(107, 91, 149, 0.25);
+            border-color: var(--fierce-orange);
+            color: var(--fierce-orange);
         }
 
-        /* Animated Title */
         .blog-title {
             font-family: var(--font-display);
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            background: var(--gradient-rainbow);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
             line-height: 1.2;
-            font-weight: 800;
             letter-spacing: 2px;
-            animation: gradient-flow 8s linear infinite;
-            filter: drop-shadow(0 0 30px rgba(255, 78, 80, 0.4));
+            margin-bottom: 30px;
+            color: var(--text-primary);
         }
 
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
-        }
-
-        /* Hero Divider */
         .hero-divider {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .divider-line {
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00CED1, transparent);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .divider-line::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .divider-dot {
-            width: 12px;
-            height: 12px;
-            background: #00CED1;
-            border-radius: 50%;
-            box-shadow: 0 0 25px #00CED1, 0 0 50px rgba(0, 206, 201, 0.5);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.7; }
-        }
-
-        /* Enhanced Content Card */
-        .blog-content {
-            max-width: 1000px;
-            margin: -60px auto 60px;
-            padding: 60px;
-            background:
-                linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%),
-                linear-gradient(145deg, rgba(10, 10, 15, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 100px rgba(255, 78, 80, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-            position: relative;
-            z-index: var(--z-content);
-            overflow: hidden;
-        }
-
-        .blog-content::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 28px;
-            padding: 2px;
-            background: linear-gradient(135deg, rgba(255,78,80,0.4), rgba(0,206,201,0.4), rgba(249,212,35,0.4));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.3;
-        }
-
-        /* Noise Texture Overlay */
-        .blog-content::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 28px;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-            opacity: 1;
-            pointer-events: none;
-        }
-
-        .blog-content > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Enhanced H2 with Animation */
-        .blog-content h2 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            background: var(--gradient-cosmic);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-top: 50px;
-            margin-bottom: 25px;
-            animation: gradient-shift 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 25px rgba(0, 206, 201, 0.5));
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* Enhanced H3 */
-        .blog-content h3 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: #F9D423;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
             gap: 15px;
         }
 
-        .blog-content h3::before {
-            content: '';
-            width: 40px;
-            height: 3px;
-            background: var(--gradient-fire);
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(255, 78, 80, 0.5);
+        .divider-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gradient-cosmic);
         }
 
-        /* Enhanced Paragraphs */
+        .divider-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--fierce-orange);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--fierce-orange);
+        }
+
+        /* Content Card - Simple Glass Effect */
+        .blog-content {
+            max-width: 900px;
+            margin: -40px auto 80px;
+            padding: 50px;
+            background: rgba(10, 10, 15, 0.6);
+            border: 1px solid rgba(107, 91, 149, 0.2);
+            border-radius: var(--radius-xl);
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .blog-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--fierce-orange);
+        }
+
+        .blog-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--cosmic-purple-light);
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
         .blog-content p {
-            font-size: 1.15rem;
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
         }
 
-        /* Enhanced Lists */
         .blog-content ul {
-            margin: 25px 0;
+            margin: 20px 0;
             padding-left: 0;
             list-style: none;
         }
 
         .blog-content li {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 18px;
-            padding-left: 40px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding-left: 25px;
             position: relative;
-            line-height: 1.8;
-            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
         .blog-content li::before {
-            content: '▹';
+            content: '▸';
             position: absolute;
             left: 0;
-            color: #00CED1;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            color: var(--fierce-orange);
         }
 
-        .blog-content li:hover::before {
-            color: #F9D423;
-            transform: translateX(5px) scale(1.2);
-        }
-
-        .blog-content li:hover {
-            color: #FFFFFF;
-            transform: translateX(5px);
-            transition: all 0.3s ease;
-        }
-
-        /* Strong Text */
         .blog-content strong {
-            color: #FF4E50;
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 78, 80, 0.5);
-        }
-
-        /* Navigation Footer */
-        .blog-nav {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1000px;
-            margin: 0 auto 60px;
-            padding: 0 20px;
-            position: relative;
-            z-index: var(--z-content);
-        }
-
-        .blog-nav a {
-            background: rgba(10, 10, 15, 0.8);
-            border: 1px solid rgba(0, 206, 201, 0.3);
-            color: #00CED1;
-            text-decoration: none;
-            font-family: var(--font-heading);
+            color: var(--fierce-orange);
             font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 25px;
-            border-radius: 15px;
         }
 
-        .blog-nav a:hover {
-            background: rgba(0, 206, 201, 0.2);
-            color: #F9D423;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 206, 201, 0.3);
-        }
-
-        /* Enhanced Quote/Highlight Box */
+        /* Highlight Box - Simple */
         .highlight-box {
-            background: linear-gradient(135deg, rgba(255,78,80,0.2) 0%, rgba(5,5,5,0.95) 100%);
-            border-left: 4px solid #FF4E50;
-            padding: 35px;
-            margin: 40px 0;
-            border-radius: 16px;
-            position: relative;
-            box-shadow:
-                0 15px 50px rgba(255, 78, 80, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-
-        .highlight-box::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 5rem;
-            font-family: Georgia, serif;
-            color: rgba(255, 78, 80, 0.15);
-            line-height: 1;
-        }
-
-        .highlight-box::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: rgba(255, 78, 80, 0.1);
+            border-left: 3px solid var(--fierce-orange);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
         }
 
         .highlight-box p {
             margin-bottom: 0;
-            color: rgba(255, 255, 255, 0.95);
-            padding-left: 60px;
-            font-size: 1.1rem;
-            font-style: italic;
-            line-height: 1.8;
+            color: var(--text-primary);
         }
 
         /* Custom Components for Equipment Design */
@@ -558,41 +243,23 @@
         }
 
         .gear-item {
-            background: linear-gradient(135deg, rgba(107,91,149,0.2) 0%, rgba(5,5,5,0.9) 100%);
-            border: 1px solid rgba(107,91,149,0.4);
-            border-radius: 12px;
+            background: rgba(107, 91, 149, 0.15);
+            border: 1px solid rgba(107, 91, 149, 0.3);
+            border-radius: var(--radius-md);
             padding: 20px;
             text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gear-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center, rgba(255,78,80,0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: var(--transition-base);
         }
 
         .gear-item:hover {
+            background: rgba(107, 91, 149, 0.25);
             border-color: var(--fierce-orange);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 78, 80, 0.2);
-        }
-
-        .gear-item:hover::before {
-            opacity: 1;
         }
 
         .gear-item i {
             font-size: 1.8rem;
             color: var(--fierce-orange);
             margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
             display: block;
         }
 
@@ -600,16 +267,12 @@
             font-family: var(--font-heading);
             color: var(--golden-amber);
             margin: 0 0 8px 0;
-            position: relative;
-            z-index: 1;
         }
 
         .gear-item p {
             font-size: 0.9rem;
             margin: 0;
-            color: rgba(255, 255, 255, 0.8);
-            position: relative;
-            z-index: 1;
+            color: var(--text-secondary);
             line-height: 1.5;
         }
 
@@ -621,48 +284,28 @@
         }
 
         .set-card {
-            background: linear-gradient(135deg, rgba(255,78,80,0.15) 0%, rgba(5,5,5,0.9) 100%);
-            border: 1px solid rgba(255,78,80,0.3);
-            border-radius: 12px;
+            background: rgba(255, 78, 80, 0.1);
+            border: 1px solid rgba(255, 78, 80, 0.3);
+            border-radius: var(--radius-md);
             padding: 18px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .set-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center, rgba(249,212,35,0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: var(--transition-base);
         }
 
         .set-card:hover {
+            background: rgba(255, 78, 80, 0.2);
             border-color: var(--fierce-orange);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 78, 80, 0.15);
-        }
-
-        .set-card:hover::before {
-            opacity: 1;
         }
 
         .set-card h4 {
             font-family: var(--font-heading);
             color: var(--golden-amber);
             margin: 0 0 10px 0;
-            position: relative;
-            z-index: 1;
         }
 
         .set-card p {
             font-size: 0.9rem;
             margin: 0;
-            color: rgba(255, 255, 255, 0.8);
-            position: relative;
-            z-index: 1;
+            color: var(--text-secondary);
             line-height: 1.5;
         }
 
@@ -672,66 +315,113 @@
             gap: 5px;
             margin: 20px 0;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .enhancement-step {
-            background: rgba(107,91,149,0.3);
+            background: rgba(107, 91, 149, 0.3);
             border: 1px solid var(--cosmic-purple);
             border-radius: 6px;
             padding: 10px 14px;
             font-size: 0.9rem;
             font-family: var(--font-heading);
             color: var(--text-secondary);
-            transition: all 0.3s ease;
+            transition: var(--transition-base);
         }
 
         .enhancement-step.high {
-            background: linear-gradient(135deg, rgba(255,78,80,0.3) 0%, rgba(5,5,5,0.9) 100%);
+            background: rgba(255, 78, 80, 0.3);
             border-color: var(--fierce-orange);
             color: var(--golden-amber);
-            box-shadow: 0 0 15px rgba(255, 78, 80, 0.3);
         }
 
         .enhancement-step:hover {
             transform: translateY(-2px);
         }
 
-        /* Scroll Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
+        /* Blog Navigation */
+        .blog-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: var(--z-content);
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .blog-nav a {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(107, 91, 149, 0.3);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: var(--transition-base);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+        }
+
+        .blog-nav a:hover {
+            background: rgba(107, 91, 149, 0.2);
+            border-color: var(--fierce-orange);
+            color: var(--fierce-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Footer styling */
+        .newsletter-discord {
+            margin-top: 20px;
+        }
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px 24px;
+            background: #5865F2;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            border-radius: var(--radius-full);
+            font-family: var(--font-heading);
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+
+        .discord-btn:hover {
+            background: #4752C4;
+            border-color: rgba(88, 101, 242, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
         }
 
         @media (max-width: 768px) {
             .blog-hero {
-                padding: 120px 20px 60px;
+                padding: 120px 20px 80px;
             }
 
             .blog-content {
-                margin: -30px 20px 40px;
-                padding: 35px 25px;
-                border-radius: 20px;
+                margin: 0 20px 60px;
+                padding: 30px 25px;
+                border-radius: var(--radius-lg);
             }
 
             .blog-nav {
                 flex-direction: column;
-                gap: 15px;
-                text-align: center;
             }
 
             .blog-meta {
                 flex-direction: column;
                 align-items: center;
-            }
-
-            .orb {
-                display: none;
+                gap: 12px;
             }
 
             .gear-grid {
@@ -745,20 +435,7 @@
     </style>
 </head>
 <body>
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress" id="readingProgress"></div>
-
-    <!-- Aurora Background -->
-    <div class="aurora-bg"></div>
-
-    <!-- Floating Orbs -->
-    <div class="floating-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
-
-    <!-- Star Field Canvas -->
+    <!-- Star Field Canvas Background -->
     <canvas id="starfield" class="starfield"></canvas>
 
     <!-- Nebula Overlay -->
@@ -768,218 +445,342 @@
         <div class="nebula nebula-3"></div>
     </div>
 
-    <nav class="devlogs-nav">
-        <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="index.html"><i class="fa-solid fa-newspaper"></i> All Devlogs</a>
+    <!-- Fixed Social Sidebar -->
+    <aside class="social-sidebar" id="socialSidebar">
+        <a href="https://discord.gg/wvvFtqftMvM" class="social-icon" data-tooltip="Discord" aria-label="Join our Discord" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-discord"></i>
+        </a>
+        <a href="https://x.com/RaudraCosmos" class="social-icon" data-tooltip="X (Twitter)" aria-label="Follow us on X" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://www.youtube.com/@RaudraCosmos" class="social-icon" data-tooltip="YouTube" aria-label="Subscribe on YouTube" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/raudra-cosmos-games" class="social-icon" data-tooltip="LinkedIn" aria-label="Connect on LinkedIn" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://www.instagram.com/raudracosmos/" class="social-icon" data-tooltip="Instagram" aria-label="Follow on Instagram" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#" class="social-icon" data-tooltip="Facebook" aria-label="Like on Facebook" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+    </aside>
+
+    <!-- Mobile Social Bar -->
+    <nav class="mobile-social-bar" id="mobileSocialBar">
+        <a href="https://discord.gg/wvvFtqftMvM" class="mobile-social-icon" aria-label="Discord" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-discord"></i>
+        </a>
+        <a href="https://x.com/RaudraCosmos" class="mobile-social-icon" aria-label="X" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://www.youtube.com/@RaudraCosmos" class="mobile-social-icon" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/raudra-cosmos-games" class="mobile-social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://www.instagram.com/raudracosmos/" class="mobile-social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#" class="mobile-social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
     </nav>
 
-    <header class="blog-hero">
-        <div class="blog-meta">
-            <span><i class="fa-regular fa-calendar"></i> March 10, 2026</span>
-            <span><i class="fa-regular fa-clock"></i> 4 min read</span>
-            <span><i class="fa-solid fa-tag"></i> Design</span>
+    <!-- Main Content -->
+    <main class="main-content">
+        <nav class="devlogs-nav">
+            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="index.html"><i class="fa-solid fa-newspaper"></i> All Devlogs</a>
+        </nav>
+
+        <header class="blog-hero">
+            <div class="blog-meta">
+                <span><i class="fa-regular fa-calendar"></i> March 10, 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 4 min read</span>
+                <span><i class="fa-solid fa-tag"></i> Design</span>
+            </div>
+            <h1 class="blog-title">From Concept to Collection - Equipment Design</h1>
+            <div class="hero-divider">
+                <span class="divider-line"></span>
+                <span class="divider-dot"></span>
+                <span class="divider-line"></span>
+            </div>
+        </header>
+
+        <article class="blog-content">
+            <p>Equipment is a core progression system in Raudra Cosmos. Here's how we designed our 4-slot system, set bonuses, and enhancement mechanics to create deep, satisfying progression.</p>
+
+            <h2>The 4-Slot Philosophy</h2>
+            <p>We went with four equipment slots: <strong>Weapon, Armor, Helmet, and Boots</strong>. Why four and not five or six?</p>
+
+            <div class="highlight-box">
+                <p><strong>The Balance:</strong> Four slots strikes the right balance - enough to feel meaningful when you upgrade, but not so many that managing equipment becomes a chore.</p>
+            </div>
+
+            <p>Each slot serves a clear purpose:</p>
+
+            <div class="gear-grid">
+                <div class="gear-item">
+                    <i class="fa-solid fa-khanda"></i>
+                    <h4>Weapon</h4>
+                    <p>Primary offensive stat boost - ATK, Crit Rate, Crit Damage</p>
+                </div>
+                <div class="gear-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h4>Armor</h4>
+                    <p>Primary defensive bulk - HP, DEF, HP%</p>
+                </div>
+                <div class="gear-item">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                    <h4>Helmet</h4>
+                    <p>Secondary defense + utility - DEF, Resistance, Effect Resistance</p>
+                </div>
+                <div class="gear-item">
+                    <i class="fa-solid fa-shoe-prints"></i>
+                    <h4>Boots</h4>
+                    <p>Speed and evasion - SPD, Evasion, Effectiveness</p>
+                </div>
+            </div>
+
+            <h2>18 Gear Sets</h2>
+            <p>Our gear sets encourage players to think about their builds. Each set has a unique identity:</p>
+
+            <h3>Offensive Sets</h3>
+            <div class="set-grid">
+                <div class="set-card">
+                    <h4>Berserker Set</h4>
+                    <p>Risk/reward damage focus. Lower DEF for massive ATK boosts.</p>
+                </div>
+                <div class="set-card">
+                    <h4>Mystic Set</h4>
+                    <p>Magic amplification. Bonus skill damage and cooldown reduction.</p>
+                </div>
+                <div class="set-card">
+                    <h4>Divine Set</h4>
+                    <p>Hybrid approach. Balanced ATK/DEF with crit bonuses.</p>
+                </div>
+                <div class="set-card">
+                    <h4>Rage Set</h4>
+                    <p>Grows stronger in battle. ATK increases as HP decreases.</p>
+                </div>
+            </div>
+
+            <h3>Defensive Sets</h3>
+            <div class="set-grid">
+                <div class="set-card">
+                    <h4>Guardian Set</h4>
+                    <p>Team protection. Damage taken redirected to wearer.</p>
+                </div>
+                <div class="set-card">
+                    <h4>Fortress Set</h4>
+                    <p>Pure tanking. Massive HP and DEF with damage reduction.</p>
+                </div>
+                <div class="set-card">
+                    <h4>Aegis Set</h4>
+                    <p>Counter-attack focus. Reflects damage taken.</p>
+                </div>
+                <div class="set-card">
+                    <h4>Immortal Set</h4>
+                    <p>Survival bonuses. Revive chance and lifesteal.</p>
+                </div>
+            </div>
+
+            <h3>Utility Sets</h3>
+            <div class="set-grid">
+                <div class="set-card">
+                    <h4>Swift Set</h4>
+                    <p>Speed and evasion. Go first, dodge attacks.</p>
+                </div>
+                <div class="set-card">
+                    <h4>Sage Set</h4>
+                    <p>Resource generation. Energy regen and cooldowns.</p>
+                </div>
+                <div class="set-card">
+                    <h4>Vampire Set</h4>
+                    <p>Sustain through lifesteal. Heal on dealing damage.</p>
+                </div>
+            </div>
+
+            <h2>10 Rune Sets</h2>
+            <p>Runes add another layer of customization. Unlike equipment, runes aren't about raw stats - they're about builds and playstyles.</p>
+
+            <ul>
+                <li><strong>Want a speed-focused team?</strong> There's a rune set for that.</li>
+                <li><strong>Building around crit rate and crit damage?</strong> We've got you covered.</li>
+                <li><strong>Need control effects?</strong> Runes provide stuns, freezes, and more.</li>
+            </ul>
+
+            <p>Runes let players fine-tune their strategies. Combined with equipment sets, the build variety is enormous.</p>
+
+            <h2>Set Bonus System</h2>
+            <p>Our set bonuses scale with more pieces equipped:</p>
+            <ul>
+                <li><strong>2-piece bonus:</strong> Modest boost - usually +10-15% to a stat</li>
+                <li><strong>4-piece bonus:</strong> Transformative effect - changes how the deity plays</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Design Intent:</strong> 2-piece bonuses are accessible. 4-piece bonuses require commitment but reward it with game-changing effects.</p>
+            </div>
+
+            <h2>Enhancement Journey (+0 to +15)</h2>
+            <p>The enhancement system is a grind, but a satisfying one. Here's the progression:</p>
+
+            <div class="enhancement-bar">
+                <span class="enhancement-step">+0</span>
+                <span class="enhancement-step">+1</span>
+                <span class="enhancement-step">+2</span>
+                <span class="enhancement-step">+3</span>
+                <span class="enhancement-step">+4</span>
+                <span class="enhancement-step">+5</span>
+                <span class="enhancement-step">+6</span>
+                <span class="enhancement-step">+7</span>
+                <span class="enhancement-step">+8</span>
+                <span class="enhancement-step high">+9</span>
+                <span class="enhancement-step high">+10</span>
+                <span class="enhancement-step high">+11</span>
+                <span class="enhancement-step high">+12</span>
+                <span class="enhancement-step high">+13</span>
+                <span class="enhancement-step high">+14</span>
+                <span class="enhancement-step high">+15</span>
+            </div>
+
+            <p>Each level feels achievable, and the gradual stat increases keep players motivated. But there's a twist:</p>
+
+            <ul>
+                <li><strong>+0 to +8:</strong> 100% success rate, low cost</li>
+                <li><strong>+9 to +12:</strong> 80-60% success rate, moderate cost</li>
+                <li><strong>+13 to +15:</strong> Lower success rates, high cost, risk of failure</li>
+            </ul>
+
+            <h2>Risk vs Reward</h2>
+            <p>Higher enhancement levels have lower success rates and cost more materials. This creates strategic decisions:</p>
+
+            <ul>
+                <li>Do I risk this upgrade now, or save for later?</li>
+                <li>Should I use protection items to prevent downgrade on failure?</li>
+                <li>Is this gear worth the investment, or should I wait for better drops?</li>
+            </ul>
+
+            <h2>What's Next for Equipment</h2>
+            <p>We're currently working on the equipment UI and inventory management. The backend systems are complete, and we're now focused on making the player experience smooth and intuitive.</p>
+
+            <div class="highlight-box">
+                <p><strong>Future Plans:</strong> Special event equipment, set expansion, enhancement protection items, and community-driven set designs.</p>
+            </div>
+
+            <p>Equipment is more than stats - it's about expression. Finding the perfect set for your favorite deity, seeing a build come together, that's the satisfaction we're designing for.</p>
+        </article>
+
+        <div class="blog-nav">
+            <a href="clean-architecture-backend.html"><i class="fa-solid fa-arrow-left"></i> Previous: Architecture</a>
+            <a href="../index.html">Back to Home <i class="fa-solid fa-house"></i></a>
         </div>
-        <h1 class="blog-title">From Concept to Collection - Equipment Design</h1>
-        <div class="hero-divider">
-            <span class="divider-line"></span>
-            <span class="divider-dot"></span>
-            <span class="divider-line"></span>
-        </div>
-    </header>
 
-    <article class="blog-content">
-        <p>Equipment is a core progression system in Raudra Cosmos. Here's how we designed our 4-slot system, set bonuses, and enhancement mechanics to create deep, satisfying progression.</p>
-
-        <h2>The 4-Slot Philosophy</h2>
-        <p>We went with four equipment slots: <strong>Weapon, Armor, Helmet, and Boots</strong>. Why four and not five or six?</p>
-
-        <div class="highlight-box">
-            <p><strong>The Balance:</strong> Four slots strikes the right balance - enough to feel meaningful when you upgrade, but not so many that managing equipment becomes a chore.</p>
-        </div>
-
-        <p>Each slot serves a clear purpose:</p>
-
-        <div class="gear-grid">
-            <div class="gear-item">
-                <i class="fa-solid fa-khanda"></i>
-                <h4>Weapon</h4>
-                <p>Primary offensive stat boost - ATK, Crit Rate, Crit Damage</p>
-            </div>
-            <div class="gear-item">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h4>Armor</h4>
-                <p>Primary defensive bulk - HP, DEF, HP%</p>
-            </div>
-            <div class="gear-item">
-                <i class="fa-solid fa-helmet-safety"></i>
-                <h4>Helmet</h4>
-                <p>Secondary defense + utility - DEF, Resistance, Effect Resistance</p>
-            </div>
-            <div class="gear-item">
-                <i class="fa-solid fa-shoe-prints"></i>
-                <h4>Boots</h4>
-                <p>Speed and evasion - SPD, Evasion, Effectiveness</p>
+        <!-- YouTube CTA Section -->
+        <div class="youtube-cta-section">
+            <div class="youtube-content">
+                <i class="fa-brands fa-youtube youtube-large-icon"></i>
+                <h3>Watch Our Development Journey</h3>
+                <p>Subscribe for upcoming devlogs, feature reveals, and behind-the-scenes content!</p>
+                <a href="https://www.youtube.com/@RaudraCosmos" class="cta-youtube-large" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span class="cta-text">Subscribe on YouTube</span>
+                    <span class="cta-glow"></span>
+                </a>
             </div>
         </div>
 
-        <h2>18 Gear Sets</h2>
-        <p>Our gear sets encourage players to think about their builds. Each set has a unique identity:</p>
+        <!-- Newsletter Section with Discord -->
+        <section class="newsletter" id="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-visual">
+                        <div class="newsletter-icon">
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </div>
+                    </div>
+                    <div class="newsletter-text">
+                        <h2 class="newsletter-title">Join the Cosmos</h2>
+                        <p class="newsletter-description">
+                            Be the first to know about updates, beta access, and exclusive content.
+                        </p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <div class="form-group">
+                                <input type="email" name="email" id="subscribeEmail" placeholder="Enter your email" required class="form-input">
+                                <button type="submit" class="form-submit">
+                                    <span>Subscribe</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <div class="newsletter-discord">
+                            <a href="https://discord.gg/wvvFtqftMvM" class="discord-btn" target="_blank">
+                                <i class="fa-brands fa-discord"></i>
+                                <span>Join the Discord</span>
+                            </a>
+                        </div>
+                        <p class="newsletter-note">No spam, only cosmic updates. Unsubscribe anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        <h3>Offensive Sets</h3>
-        <div class="set-grid">
-            <div class="set-card">
-                <h4>Berserker Set</h4>
-                <p>Risk/reward damage focus. Lower DEF for massive ATK boosts.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-line"></div>
+        </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">RAUDRA COSMOS</h3>
+                    <p class="footer-tagline">One Cosmos. All Pantheons.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Explore</h4>
+                        <ul class="footer-nav">
+                            <li><a href="../index.html#about">The Vision</a></li>
+                            <li><a href="../index.html#gameFeatures">Game Features</a></li>
+                            <li><a href="index.html">Devlogs</a></li>
+                            <li><a href="../pantheons.html">The Pantheons</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Community</h4>
+                        <ul class="footer-nav">
+                            <li><a href="https://discord.gg/wvvFtqftMvM" target="_blank" rel="noopener noreferrer">Discord</a></li>
+                            <li><a href="https://x.com/RaudraCosmos" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                            <li><a href="https://www.youtube.com/@RaudraCosmos" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-heading">Legal</h4>
+                        <ul class="footer-nav">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="set-card">
-                <h4>Mystic Set</h4>
-                <p>Magic amplification. Bonus skill damage and cooldown reduction.</p>
-            </div>
-            <div class="set-card">
-                <h4>Divine Set</h4>
-                <p>Hybrid approach. Balanced ATK/DEF with crit bonuses.</p>
-            </div>
-            <div class="set-card">
-                <h4>Rage Set</h4>
-                <p>Grows stronger in battle. ATK increases as HP decreases.</p>
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 Raudra Cosmos. All rights reserved.
+                </p>
+                <p class="footer-made">
+                    Crafted with <span class="heart"><i class="fa-solid fa-fire"></i></span> in Bengaluru, India
+                </p>
             </div>
         </div>
+    </footer>
 
-        <h3>Defensive Sets</h3>
-        <div class="set-grid">
-            <div class="set-card">
-                <h4>Guardian Set</h4>
-                <p>Team protection. Damage taken redirected to wearer.</p>
-            </div>
-            <div class="set-card">
-                <h4>Fortress Set</h4>
-                <p>Pure tanking. Massive HP and DEF with damage reduction.</p>
-            </div>
-            <div class="set-card">
-                <h4>Aegis Set</h4>
-                <p>Counter-attack focus. Reflects damage taken.</p>
-            </div>
-            <div class="set-card">
-                <h4>Immortal Set</h4>
-                <p>Survival bonuses. Revive chance and lifesteal.</p>
-            </div>
-        </div>
-
-        <h3>Utility Sets</h3>
-        <div class="set-grid">
-            <div class="set-card">
-                <h4>Swift Set</h4>
-                <p>Speed and evasion. Go first, dodge attacks.</p>
-            </div>
-            <div class="set-card">
-                <h4>Sage Set</h4>
-                <p>Resource generation. Energy regen and cooldowns.</p>
-            </div>
-            <div class="set-card">
-                <h4>Vampire Set</h4>
-                <p>Sustain through lifesteal. Heal on dealing damage.</p>
-            </div>
-        </div>
-
-        <h2>10 Rune Sets</h2>
-        <p>Runes add another layer of customization. Unlike equipment, runes aren't about raw stats - they're about builds and playstyles.</p>
-
-        <ul>
-            <li><strong>Want a speed-focused team?</strong> There's a rune set for that.</li>
-            <li><strong>Building around crit rate and crit damage?</strong> We've got you covered.</li>
-            <li><strong>Need control effects?</strong> Runes provide stuns, freezes, and more.</li>
-        </ul>
-
-        <p>Runes let players fine-tune their strategies. Combined with equipment sets, the build variety is enormous.</p>
-
-        <h2>Set Bonus System</h2>
-        <p>Our set bonuses scale with more pieces equipped:</p>
-        <ul>
-            <li><strong>2-piece bonus:</strong> Modest boost - usually +10-15% to a stat</li>
-            <li><strong>4-piece bonus:</strong> Transformative effect - changes how the deity plays</li>
-        </ul>
-
-        <div class="highlight-box">
-            <p><strong>Design Intent:</strong> 2-piece bonuses are accessible. 4-piece bonuses require commitment but reward it with game-changing effects.</p>
-        </div>
-
-        <h2>Enhancement Journey (+0 to +15)</h2>
-        <p>The enhancement system is a grind, but a satisfying one. Here's the progression:</p>
-
-        <div class="enhancement-bar">
-            <span class="enhancement-step">+0</span>
-            <span class="enhancement-step">+1</span>
-            <span class="enhancement-step">+2</span>
-            <span class="enhancement-step">+3</span>
-            <span class="enhancement-step">+4</span>
-            <span class="enhancement-step">+5</span>
-            <span class="enhancement-step">+6</span>
-            <span class="enhancement-step">+7</span>
-            <span class="enhancement-step">+8</span>
-            <span class="enhancement-step high">+9</span>
-            <span class="enhancement-step high">+10</span>
-            <span class="enhancement-step high">+11</span>
-            <span class="enhancement-step high">+12</span>
-            <span class="enhancement-step high">+13</span>
-            <span class="enhancement-step high">+14</span>
-            <span class="enhancement-step high">+15</span>
-        </div>
-
-        <p>Each level feels achievable, and the gradual stat increases keep players motivated. But there's a twist:</p>
-
-        <ul>
-            <li><strong>+0 to +8:</strong> 100% success rate, low cost</li>
-            <li><strong>+9 to +12:</strong> 80-60% success rate, moderate cost</li>
-            <li><strong>+13 to +15:</strong> Lower success rates, high cost, risk of failure</li>
-        </ul>
-
-        <h2>Risk vs Reward</h2>
-        <p>Higher enhancement levels have lower success rates and cost more materials. This creates strategic decisions:</p>
-
-        <ul>
-            <li>Do I risk this upgrade now, or save for later?</li>
-            <li>Should I use protection items to prevent downgrade on failure?</li>
-            <li>Is this gear worth the investment, or should I wait for better drops?</li>
-        </ul>
-
-        <h2>What's Next for Equipment</h2>
-        <p>We're currently working on the equipment UI and inventory management. The backend systems are complete, and we're now focused on making the player experience smooth and intuitive.</p>
-
-        <div class="highlight-box">
-            <p><strong>Future Plans:</strong> Special event equipment, set expansion, enhancement protection items, and community-driven set designs.</p>
-        </div>
-
-        <p>Equipment is more than stats - it's about expression. Finding the perfect set for your favorite deity, seeing a build come together, that's the satisfaction we're designing for.</p>
-    </article>
-
-    <div class="blog-nav">
-        <a href="clean-architecture-backend.html"><i class="fa-solid fa-arrow-left"></i> Previous: Architecture</a>
-        <a href="../index.html">Back to Home <i class="fa-solid fa-house"></i></a>
-    </div>
-
+    <!-- Scripts -->
     <script src="../script.js"></script>
-    <script>
-        // Reading Progress Bar
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('readingProgress').style.transform = `scaleX(${scrolled / 100})`;
-        });
-
-        // Fade In on Scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.blog-content > h2, .blog-content > p, .blog-content > ul, .blog-content > h3, .blog-content > .gear-grid, .blog-content > .set-grid, .blog-content > .enhancement-bar, .blog-content > .highlight-box').forEach(el => {
-            el.classList.add('fade-in');
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
