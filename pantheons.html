@@ -69,15 +69,23 @@
         h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(2rem, 5vw, 3.5rem);
-            color: #F9D423;
+            background: linear-gradient(135deg, #FF4E50 0%, #F9D423 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            filter: drop-shadow(0 0 30px rgba(255, 78, 80, 0.4));
         }
         .subtitle {
             font-size: 1.2rem;
-            color: #6B5B95;
+            background: linear-gradient(135deg, #6B5B95 0%, #9B89B3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
+            font-weight: 600;
         }
         .description {
             max-width: 700px;
@@ -144,7 +152,11 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: #fff;
+            background: linear-gradient(135deg, var(--color1), var(--color2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
         }
         .pantheon-origin {
             color: #6B5B95;
@@ -434,8 +446,8 @@
         <div class="container">
             <div class="footer-links">
                 <a href="index.html">Home</a>
-                <a href="index.html#gameFeatures">Features</a>
-                <a href="index.html#devlogs">Devlogs</a>
+                <a href="features.html">Features</a>
+                <a href="devlogs/">Devlogs</a>
                 <a href="index.html#newsletter">Newsletter</a>
             </div>
             <p class="copyright">© 2026 Raudra Cosmos. All rights reserved.</p>

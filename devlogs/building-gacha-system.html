@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Building Our Gacha System - Fair & Secure. Why server-authoritative gacha matters, crypto-secure RNG, and designing a dual pity system that players can trust.">
+    <meta name="keywords" content="gacha system, game development, RNG, pity system, fair gacha, server-authoritative">
+    <meta name="theme-color" content="#050505">
+    <meta name="author" content="Raudra Cosmos Games">
+    <link rel="canonical" href="https://raudracosmos.com/devlogs/building-gacha-system.html">
+
+    <title>Building Our Gacha System - Fair & Secure | Raudra Cosmos Devlog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../tab_icon.png" sizes="any">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://raudracosmos.com/devlogs/building-gacha-system.html">
+    <meta property="og:title" content="Building Our Gacha System - Fair & Secure">
+    <meta property="og:description" content="Why server-authoritative gacha matters, crypto-secure RNG, and designing a dual pity system that players can trust.">
+    <meta property="og:site_name" content="Raudra Cosmos">
+    <meta property="article:published_time" content="2026-02-18">
+    <meta property="article:author" content="Raudra Cosmos Games">
+
+    <style>
+        :root {
+            --font-display: 'Orbitron', sans-serif;
+            --font-heading: 'Rajdhani', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --deep-black: #050505;
+            --cosmic-purple: #6B5B95;
+            --fierce-orange: #FF4E50;
+            --golden-amber: #F9D423;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --gradient-fire: linear-gradient(135deg, var(--fierce-orange) 0%, var(--golden-amber) 100%);
+            --gradient-cosmic: linear-gradient(135deg, var(--cosmic-purple) 0%, #4A90D9 100%);
+            --z-content: 10;
+        }
+
+        body {
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .devlogs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .devlogs-nav a {
+            color: var(--cosmic-purple);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .devlogs-nav a:hover {
+            color: var(--golden-amber);
+        }
+
+        .blog-hero {
+            text-align: center;
+            padding: 100px 20px 60px;
+            background: linear-gradient(180deg, rgba(107,91,149,0.2) 0%, transparent 100%);
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .blog-meta span {
+            color: var(--cosmic-purple);
+            font-size: 0.9rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+
+        .blog-meta i {
+            margin-right: 6px;
+            color: var(--fierce-orange);
+        }
+
+        .blog-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .blog-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            background: var(--gradient-cosmic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .blog-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .blog-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--golden-amber);
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        .blog-content ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .blog-content li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            list-style: disc;
+            line-height: 1.7;
+        }
+
+        .blog-content strong {
+            color: var(--fierce-orange);
+        }
+
+        .blog-nav {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .blog-nav a {
+            color: var(--cosmic-purple);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-nav a:hover {
+            color: var(--golden-amber);
+        }
+
+        .highlight-box {
+            background: rgba(107,91,149,0.1);
+            border-left: 4px solid var(--fierce-orange);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .blog-nav {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Star Field Canvas -->
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- Nebula Overlay -->
+    <div class="nebula-overlay">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+
+    <nav class="devlogs-nav">
+        <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="index.html"><i class="fa-solid fa-newspaper"></i> All Devlogs</a>
+    </nav>
+
+    <header class="blog-hero">
+        <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> February 18, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 6 min read</span>
+            <span><i class="fa-solid fa-tag"></i> Tech</span>
+        </div>
+        <h1 class="blog-title">Building Our Gacha System - Fair & Secure</h1>
+    </header>
+
+    <article class="blog-content">
+        <p>When we set out to build Raudra Cosmos, we knew the gacha system would be make-or-break. Players need to trust that their pulls are fair, and we needed to build something that's both exciting and transparent. Here's how we approached it.</p>
+
+        <h2>Why Server-Authoritative Gacha Matters</h2>
+        <p>Many games handle gacha RNG on the client side for simplicity. But that opens the door to manipulation. We made the decision early on to handle all randomness server-side. Every summon request goes through our backend, where the outcome is determined using cryptographically secure random number generation.</p>
+
+        <div class="highlight-box">
+            <p><strong>The Trust Factor:</strong> Players can trust the results because the rates we show are the rates they get. No manipulation, no hidden modifiers.</p>
+        </div>
+
+        <p>This approach means every pull is verifiable and consistent. Players never have to wonder if someone found an exploit or if the system is rigged against them.</p>
+
+        <h2>The Dual Pity System</h2>
+        <p>One of our key design decisions was implementing a dual pity system that balances excitement with fairness:</p>
+        <ul>
+            <li><strong>Soft Pity (after 40 pulls):</strong> Rates gradually increase for higher-tier deities</li>
+            <li><strong>Hard Pity (at 100 pulls):</strong> Guaranteed UR for featured banners</li>
+        </ul>
+
+        <p>The beauty of this system is its transparency. Players can see exactly how many pulls they've made, and they know when their guaranteed pull is coming. No more questioning "is the pity really at 100 pulls?" - it's all visible and trackable in the UI.</p>
+
+        <h3>Featured Banners & Rate-Up Events</h3>
+        <p>Our featured banner system gives players a reason to get excited about specific deities. During events, certain deities get a rate-up, meaning they appear more frequently than usual. But we balanced this carefully - other deities are still possible, just less likely.</p>
+
+        <p>We also implemented event-only banners where the pity counter is separate from standard banners. This lets players save their progress for the banners they care about most, without losing progress on regular summons.</p>
+
+        <h2>The Friendship System - F2P Friendly</h2>
+        <p>Not everyone wants to spend money, and that's okay. Our friendship summon system gives free-to-play players a meaningful path to acquiring cards. By sending hearts to friends and participating in co-op content, players can earn friendship points and summon for duplicates - essential for progression.</p>
+
+        <div class="highlight-box">
+            <p><strong>Daily Limits:</strong> Friendship summons have daily caps to maintain game balance while still providing a steady path for dedicated F2P players.</p>
+        </div>
+
+        <h2>Crypto-Secure RNG</h2>
+        <p>At the heart of our system is cryptographically secure random number generation. We use industry-standard RNG algorithms that provide:</p>
+        <ul>
+            <li>Unpredictable outcomes that cannot be reverse-engineered</li>
+            <li>Uniform distribution across all possible results</li>
+            <li>Protection against timing attacks and manipulation</li>
+        </ul>
+
+        <h2>What Makes Our System Different</h2>
+        <p>Building a fair gacha system isn't just about good math - it's about building trust with your players. Here's what sets Raudra Cosmos apart:</p>
+        <ul>
+            <li><strong>Transparent rates:</strong> What you see is what you get</li>
+            <li><strong>No hidden mechanics:</strong> All modifiers are visible to players</li>
+            <li><strong>Player-first design:</strong> Systems designed to reward, not exploit</li>
+            <li><strong>Server security:</strong> All rolls happen server-side with proper validation</li>
+        </ul>
+
+        <h2>What's Next</h2>
+        <p>We're constantly refining our gacha system based on feedback and testing. Future improvements include:</p>
+        <ul>
+            <li>Enhanced pity visualization in the summon UI</li>
+            <li>Detailed summon history tracking</li>
+            <li>Special event tickets with unique mechanics</li>
+            <li>Community-driven rate-up polls</li>
+        </ul>
+
+        <p>Building a gacha system that players can trust is an ongoing commitment, not a one-time implementation. And that's a commitment we make every day.</p>
+    </article>
+
+    <div class="blog-nav">
+        <a href="progression-systems.html">Next: Progression Systems <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="../index.html">Back to Home <i class="fa-solid fa-house"></i></a>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

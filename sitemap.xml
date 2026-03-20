@@ -76,4 +76,52 @@
         <priority>0.5</priority>
     </url>
 
+    <!-- Devlogs Index -->
+    <url>
+        <loc>https://raudracosmos.com/devlogs/</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Devlog: Building Our Gacha System -->
+    <url>
+        <loc>https://raudracosmos.com/devlogs/building-gacha-system.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Devlog: Progression Systems -->
+    <url>
+        <loc>https://raudracosmos.com/devlogs/progression-systems.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Devlog: 250 Deities from 7 Pantheons -->
+    <url>
+        <loc>https://raudracosmos.com/devlogs/250-deities-pantheons.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Devlog: Clean Architecture in Game Backend -->
+    <url>
+        <loc>https://raudracosmos.com/devlogs/clean-architecture-backend.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Devlog: Equipment Design -->
+    <url>
+        <loc>https://raudracosmos.com/devlogs/equipment-design.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>

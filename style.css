@@ -1515,7 +1515,103 @@ body.hovering .cursor-outer {
 }
 
 /* ============================================
-   15. PANTHEON SECTION (Character Slider)
+   15. YOUTUBE CTA SECTION
+   ============================================ */
+
+.youtube-cta-section {
+    max-width: 600px;
+    margin: 60px auto;
+    text-align: center;
+    position: relative;
+    z-index: var(--z-content);
+}
+
+.youtube-content {
+    background: linear-gradient(145deg, rgba(255,0,0,0.1) 0%, rgba(5,5,5,0.9) 100%);
+    border: 2px solid rgba(255,0,0,0.3);
+    border-radius: 20px;
+    padding: 40px;
+    transition: var(--transition-base);
+}
+
+.youtube-content:hover {
+    border-color: rgba(255,0,0,0.5);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+}
+
+.youtube-large-icon {
+    font-size: 4rem;
+    color: #FF0000;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(255,0,0,0.5));
+    animation: youtubePulse 2s ease-in-out infinite;
+}
+
+@keyframes youtubePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.youtube-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    background: var(--gradient-fire);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.youtube-content p {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+}
+
+.cta-youtube-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+    color: white;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+    transition: var(--transition-base);
+}
+
+.cta-youtube-large .cta-text {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-youtube-large .cta-glow {
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+    border-radius: 50px;
+    filter: blur(15px);
+    opacity: 0;
+    transition: var(--transition-base);
+    z-index: -1;
+}
+
+.cta-youtube-large:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 0, 0, 0.6);
+}
+
+.cta-youtube-large:hover .cta-glow {
+    opacity: 0.6;
+}
+
+/* ============================================
+   16. PANTHEON SECTION (Character Slider)
    ============================================ */
 
 .pantheon {

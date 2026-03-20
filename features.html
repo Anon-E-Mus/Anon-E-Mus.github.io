@@ -47,13 +47,21 @@
     </script>
 
     <style>
+        :root {
+            --gradient-fire: linear-gradient(135deg, #FF4E50 0%, #F9D423 100%);
+            --gradient-cosmic: linear-gradient(135deg, #6B5B95 0%, #9B89B3 100%);
+            --deep-black: #050505;
+            --cosmic-purple: #6B5B95;
+            --golden-amber: #F9D423;
+            --fierce-orange: #FF4E50;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            background: #050505;
+            background: var(--deep-black);
             color: #fff;
             font-family: 'Rajdhani', sans-serif;
             line-height: 1.6;
@@ -65,21 +73,29 @@
         }
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 80px 20px 50px;
             background: linear-gradient(180deg, rgba(107,91,149,0.3) 0%, transparent 100%);
+            position: relative;
+            z-index: 10;
         }
-        h1 {
+        .header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            color: #F9D423;
-            margin-bottom: 10px;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 30px rgba(255, 78, 80, 0.4));
         }
         .subtitle {
-            font-size: 1.2rem;
-            color: #6B5B95;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: var(--cosmic-purple);
+            margin-bottom: 15px;
+            font-weight: 500;
         }
         .description {
             max-width: 700px;
@@ -90,58 +106,69 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            color: #6B5B95;
+            color: var(--cosmic-purple);
             text-decoration: none;
             margin-bottom: 20px;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 10;
         }
         .nav-back:hover {
-            color: #F9D423;
+            color: var(--golden-amber);
+            gap: 15px;
         }
         .feature-section {
-            padding: 40px 0;
+            padding: 60px 0;
+            position: relative;
+            z-index: 10;
         }
         .section-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            color: #F9D423;
-            margin-bottom: 20px;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 15px;
+            letter-spacing: 2px;
         }
         .section-title i {
-            color: #FF4E50;
+            color: var(--fierce-orange);
+            font-size: 0.9em;
         }
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
         .feature-card {
-            background: linear-gradient(145deg, rgba(107,91,149,0.1) 0%, rgba(5,5,5,0.9) 100%);
+            background: linear-gradient(145deg, rgba(107,91,149,0.15) 0%, rgba(5,5,5,0.95) 100%);
             border: 1px solid rgba(107,91,149,0.3);
-            border-radius: 12px;
-            padding: 25px;
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .feature-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(107,91,149,0.15);
-            border-color: rgba(249,212,35,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(107,91,149,0.25);
+            border-color: rgba(249,212,35,0.4);
         }
         .feature-icon {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 16px;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: rgba(107, 91, 149, 0.1);
             border: 1px solid rgba(107, 91, 149, 0.2);
             border-radius: 16px;
-            font-size: 1.25rem;
-            color: #6B5B95;
+            font-size: 1.4rem;
+            color: var(--cosmic-purple);
             transition: all 0.3s ease;
         }
         .feature-card:hover .feature-icon {
@@ -149,95 +176,106 @@
         }
         .feature-name {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
             color: #fff;
         }
         .feature-desc {
             color: #aaa;
             font-size: 0.95rem;
+            line-height: 1.6;
         }
         .status-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
-            margin-top: 10px;
+            margin-top: 12px;
+            font-weight: 600;
         }
         .status-complete {
-            background: rgba(0,255,100,0.2);
-            color: #00ff64;
+            background: rgba(76, 175, 80, 0.15);
+            color: #4CAF50;
         }
         .status-progress {
-            background: rgba(255,165,0,0.2);
-            color: #ffa500;
+            background: rgba(255, 193, 7, 0.15);
+            color: #FFC107;
         }
         .status-planned {
-            background: rgba(100,100,255,0.2);
-            color: #6464ff;
+            background: rgba(158, 158, 158, 0.15);
+            color: #9E9E9E;
         }
-        /* Status-specific icon colors */
         .feature-card.implemented .feature-icon {
             color: #4CAF50;
-            background: rgba(76, 175, 80, 0.1);
-            border-color: rgba(76, 175, 80, 0.2);
+            background: rgba(76, 175, 80, 0.15);
+            border-color: rgba(76, 175, 80, 0.3);
         }
         .feature-card.partial .feature-icon {
             color: #FFC107;
-            background: rgba(255, 193, 7, 0.1);
-            border-color: rgba(255, 193, 7, 0.2);
+            background: rgba(255, 193, 7, 0.15);
+            border-color: rgba(255, 193, 7, 0.3);
         }
         .feature-card.planned .feature-icon {
             color: #9E9E9E;
-            background: rgba(158, 158, 158, 0.1);
-            border-color: rgba(158, 158, 158, 0.2);
+            background: rgba(158, 158, 158, 0.15);
+            border-color: rgba(158, 158, 158, 0.3);
         }
         .highlight-box {
-            background: linear-gradient(145deg, rgba(255,78,80,0.1) 0%, rgba(5,5,5,0.9) 100%);
+            background: linear-gradient(145deg, rgba(255,78,80,0.1) 0%, rgba(5,5,5,0.95) 100%);
             border: 1px solid rgba(255,78,80,0.3);
-            border-radius: 12px;
-            padding: 30px;
+            border-radius: 16px;
+            padding: 35px;
             margin: 30px 0;
         }
         .highlight-box h3 {
             font-family: 'Orbitron', sans-serif;
-            color: #FF4E50;
+            font-size: 1.3rem;
+            background: var(--gradient-cosmic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 15px;
         }
         .highlight-list {
             list-style: none;
         }
         .highlight-list li {
-            padding: 8px 0;
-            padding-left: 25px;
+            padding: 10px 0;
+            padding-left: 30px;
             position: relative;
             color: #ddd;
+            line-height: 1.7;
         }
         .highlight-list li::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: #F9D423;
+            color: var(--golden-amber);
+            font-weight: bold;
         }
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             border-top: 1px solid rgba(107,91,149,0.2);
-            margin-top: 60px;
+            margin-top: 80px;
+            position: relative;
+            z-index: 10;
         }
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         .footer-links a {
-            color: #6B5B95;
+            color: var(--cosmic-purple);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-weight: 500;
         }
         .footer-links a:hover {
-            color: #F9D423;
+            color: var(--golden-amber);
         }
         .copyright {
             color: #666;
@@ -277,7 +315,7 @@
             <h2 class="section-title"><i class="fa-solid fa-khanda"></i> Strategic Card Combat System</h2>
             <div class="highlight-box">
                 <h3>Turn-Based TCG Battles</h3>
-                <p style="color: #aaa; margin-bottom: 15px;">
+                <p style="color: #aaa; margin-bottom: 15px; line-height: 1.7;">
                     Engage in tactical turn-based card combat where strategy matters more than luck.
                     Build powerful decks with deity cards, activate devastating skills, and outsmart your opponents.
                 </p>
@@ -288,6 +326,49 @@
                     <li>Tier-based card power (UR, SSR, SR, R, Uncommon, Common)</li>
                     <li>Real-time PvP arena for competitive card battles</li>
                 </ul>
+            </div>
+        </section>
+
+        <!-- Social Features (MOVED HERE) -->
+        <section class="feature-section">
+            <h2 class="section-title"><i class="fa-solid fa-users"></i> Social & Multiplayer</h2>
+            <div class="feature-grid">
+                <div class="feature-card partial">
+                    <div class="feature-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <h3 class="feature-name">Guild System</h3>
+                    <p class="feature-desc">Create or join guilds. Chat, donate, and prepare for cooperative raids.</p>
+                    <span class="status-badge status-progress">In Progress</span>
+                </div>
+                <div class="feature-card implemented">
+                    <div class="feature-icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3 class="feature-name">Real-Time Chat</h3>
+                    <p class="feature-desc">WebSocket-based guild and global chat with whisper support.</p>
+                    <span class="status-badge status-complete">Live</span>
+                </div>
+                <div class="feature-card planned">
+                    <div class="feature-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                    <h3 class="feature-name">Guild Boss Raids</h3>
+                    <p class="feature-desc">Cooperative PvE battles against powerful mythological bosses.</p>
+                    <span class="status-badge status-planned">Planned</span>
+                </div>
+                <div class="feature-card planned">
+                    <div class="feature-icon"><i class="fa-solid fa-chess-knight"></i></div>
+                    <h3 class="feature-name">Guild Wars</h3>
+                    <p class="feature-desc">Guild vs Guild competitive battles for territory and rewards.</p>
+                    <span class="status-badge status-planned">Planned</span>
+                </div>
+                <div class="feature-card partial">
+                    <div class="feature-icon"><i class="fa-solid fa-user-group"></i></div>
+                    <h3 class="feature-name">Friends System</h3>
+                    <p class="feature-desc">Add friends, send gifts, and co-op together.</p>
+                    <span class="status-badge status-progress">In Progress</span>
+                </div>
+                <div class="feature-card planned">
+                    <div class="feature-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <h3 class="feature-name">PvP Arena</h3>
+                    <p class="feature-desc">Ranked competitive card battles against other players.</p>
+                    <span class="status-badge status-planned">Planned</span>
+                </div>
             </div>
         </section>
 
@@ -395,91 +476,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Social Features -->
-        <section class="feature-section">
-            <h2 class="section-title"><i class="fa-solid fa-users"></i> Social & Multiplayer</h2>
-            <div class="feature-grid">
-                <div class="feature-card partial">
-                    <div class="feature-icon"><i class="fa-solid fa-people-group"></i></div>
-                    <h3 class="feature-name">Guild System</h3>
-                    <p class="feature-desc">Create or join guilds. Chat, donate, and prepare for cooperative raids.</p>
-                    <span class="status-badge status-progress">In Progress</span>
-                </div>
-                <div class="feature-card implemented">
-                    <div class="feature-icon"><i class="fa-solid fa-comments"></i></div>
-                    <h3 class="feature-name">Real-Time Chat</h3>
-                    <p class="feature-desc">WebSocket-based guild and global chat with whisper support.</p>
-                    <span class="status-badge status-complete">Live</span>
-                </div>
-                <div class="feature-card planned">
-                    <div class="feature-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
-                    <h3 class="feature-name">Guild Boss Raids</h3>
-                    <p class="feature-desc">Cooperative PvE battles against powerful mythological bosses.</p>
-                    <span class="status-badge status-planned">Planned</span>
-                </div>
-                <div class="feature-card planned">
-                    <div class="feature-icon"><i class="fa-solid fa-swords"></i></div>
-                    <h3 class="feature-name">Guild Wars</h3>
-                    <p class="feature-desc">Guild vs Guild competitive battles for territory and rewards.</p>
-                    <span class="status-badge status-planned">Planned</span>
-                </div>
-                <div class="feature-card partial">
-                    <div class="feature-icon"><i class="fa-solid fa-user-group"></i></div>
-                    <h3 class="feature-name">Friends System</h3>
-                    <p class="feature-desc">Add friends, send gifts, and co-op together.</p>
-                    <span class="status-badge status-progress">In Progress</span>
-                </div>
-                <div class="feature-card planned">
-                    <div class="feature-icon"><i class="fa-solid fa-trophy"></i></div>
-                    <h3 class="feature-name">PvP Arena</h3>
-                    <p class="feature-desc">Ranked competitive card battles against other players.</p>
-                    <span class="status-badge status-planned">Planned</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Collection -->
-        <section class="feature-section">
-            <h2 class="section-title"><i class="fa-solid fa-scroll"></i> Deity Collection</h2>
-            <div class="highlight-box">
-                <h3>250+ Collectible Deity Cards</h3>
-                <p style="color: #aaa; margin-bottom: 15px;">
-                    Build your ultimate team from gods and goddesses across 7 pantheons.
-                    Each deity has unique stats, skills, elemental affinities, and lore.
-                </p>
-                <div class="feature-grid">
-                    <div style="text-align: center; padding: 15px;">
-                        <div style="font-size: 2rem; color: #FF4E50; margin-bottom: 5px;">50+</div>
-                        <div style="color: #aaa;">Hindu Deities</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px;">
-                        <div style="font-size: 2rem; color: #6B5B95; margin-bottom: 5px;">40+</div>
-                        <div style="color: #aaa;">Norse Deities</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px;">
-                        <div style="font-size: 2rem; color: #F9D423; margin-bottom: 5px;">35+</div>
-                        <div style="color: #aaa;">Egyptian Deities</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px;">
-                        <div style="font-size: 2rem; color: #87CEEB; margin-bottom: 5px;">45+</div>
-                        <div style="color: #aaa;">Greek Deities</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px;">
-                        <div style="font-size: 2rem; color: #FFB6C1; margin-bottom: 5px;">35+</div>
-                        <div style="color: #aaa;">Shinto Deities</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px;">
-                        <div style="font-size: 2rem; color: #98FB98; margin-bottom: 5px;">30+</div>
-                        <div style="color: #aaa;">Taoist Deities</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px;">
-                        <div style="font-size: 2rem; color: #CD5C5C; margin-bottom: 5px;">25+</div>
-                        <div style="color: #aaa;">Babylonian Deities</div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -487,7 +483,7 @@
             <div class="footer-links">
                 <a href="index.html">Home</a>
                 <a href="pantheons.html">Pantheons</a>
-                <a href="index.html#devlogs">Devlogs</a>
+                <a href="devlogs/">Devlogs</a>
                 <a href="index.html#newsletter">Newsletter</a>
             </div>
             <p class="copyright">© 2026 Raudra Cosmos. All rights reserved.</p>

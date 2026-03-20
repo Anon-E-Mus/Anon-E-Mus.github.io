@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="250 Deities from 7 Pantheons. The challenge of representing 7 cultures respectfully, designing our tier system, and creating meaningful elemental interactions.">
+    <meta name="keywords" content="mythology, game design, pantheons, deities, cultural representation, game characters">
+    <meta name="theme-color" content="#050505">
+    <meta name="author" content="Raudra Cosmos Games">
+    <link rel="canonical" href="https://raudracosmos.com/devlogs/250-deities-pantheons.html">
+
+    <title>250 Deities from 7 Pantheons | Raudra Cosmos Devlog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../tab_icon.png" sizes="any">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://raudracosmos.com/devlogs/250-deities-pantheons.html">
+    <meta property="og:title" content="250 Deities from 7 Pantheons">
+    <meta property="og:description" content="The challenge of representing 7 cultures respectfully, designing our tier system, and creating meaningful elemental interactions.">
+    <meta property="og:site_name" content="Raudra Cosmos">
+    <meta property="article:published_time" content="2026-03-01">
+    <meta property="article:author" content="Raudra Cosmos Games">
+
+    <style>
+        :root {
+            --font-display: 'Orbitron', sans-serif;
+            --font-heading: 'Rajdhani', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --deep-black: #050505;
+            --cosmic-purple: #6B5B95;
+            --fierce-orange: #FF4E50;
+            --golden-amber: #F9D423;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --gradient-fire: linear-gradient(135deg, var(--fierce-orange) 0%, var(--golden-amber) 100%);
+            --gradient-cosmic: linear-gradient(135deg, var(--cosmic-purple) 0%, #4A90D9 100%);
+            --z-content: 10;
+        }
+
+        body {
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .devlogs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .devlogs-nav a {
+            color: var(--cosmic-purple);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .devlogs-nav a:hover {
+            color: var(--golden-amber);
+        }
+
+        .blog-hero {
+            text-align: center;
+            padding: 100px 20px 60px;
+            background: linear-gradient(180deg, rgba(0,206,209,0.2) 0%, transparent 100%);
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .blog-meta span {
+            color: var(--cosmic-purple);
+            font-size: 0.9rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+
+        .blog-meta i {
+            margin-right: 6px;
+            color: var(--fierce-orange);
+        }
+
+        .blog-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .blog-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .blog-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            background: var(--gradient-cosmic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .blog-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .blog-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--golden-amber);
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        .blog-content ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .blog-content li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            list-style: disc;
+            line-height: 1.7;
+        }
+
+        .blog-content strong {
+            color: var(--fierce-orange);
+        }
+
+        .blog-nav {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .blog-nav a {
+            color: var(--cosmic-purple);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-nav a:hover {
+            color: var(--golden-amber);
+        }
+
+        .pantheon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .pantheon-card {
+            background: rgba(107,91,149,0.1);
+            border: 1px solid rgba(107,91,149,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .pantheon-card:hover {
+            border-color: var(--fierce-orange);
+            transform: translateY(-5px);
+        }
+
+        .pantheon-card h4 {
+            font-family: var(--font-display);
+            color: var(--golden-amber);
+            margin-bottom: 10px;
+        }
+
+        .pantheon-card p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .highlight-box {
+            background: rgba(0,206,209,0.1);
+            border-left: 4px solid var(--fierce-orange);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .blog-nav {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .pantheon-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Star Field Canvas -->
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- Nebula Overlay -->
+    <div class="nebula-overlay">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+
+    <nav class="devlogs-nav">
+        <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="index.html"><i class="fa-solid fa-newspaper"></i> All Devlogs</a>
+    </nav>
+
+    <header class="blog-hero">
+        <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> March 1, 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 4 min read</span>
+            <span><i class="fa-solid fa-tag"></i> Design</span>
+        </div>
+        <h1 class="blog-title">250 Deities from 7 Pantheons</h1>
+    </header>
+
+    <article class="blog-content">
+        <p>One of our biggest challenges - and proudest achievements - is representing 7 different cultural mythologies respectfully and accurately. Here's how we approached bringing 250+ deities to life in Raudra Cosmos.</p>
+
+        <h2>Cultural Respect First</h2>
+        <p>Before we designed a single deity, we spent <strong>8+ months</strong> on research and consultation. This wasn't about grabbing cool-looking gods and throwing them in a game. It's about understanding what these deities meant to the people who worshipped them, and honoring that legacy.</p>
+
+        <div class="highlight-box">
+            <p><strong>Our Commitment:</strong> We consulted with cultural experts, read primary sources, and engaged with community members from each culture to ensure authentic representation.</p>
+        </div>
+
+        <h2>The Seven Pantheons</h2>
+        <p>Our 7 pantheons represent some of the world's richest mythological traditions:</p>
+
+        <div class="pantheon-grid">
+            <div class="pantheon-card">
+                <h4><i class="fa-solid fa-om"></i> Hindu (50+ Deities)</h4>
+                <p>Shiva, Vishnu, Durga, Ganesha, Kali - Elements: Cosmic, Lightning, Nature. Design: Capturing divine duality.</p>
+            </div>
+            <div class="pantheon-card">
+                <h4><i class="fa-solid fa-gavel"></i> Norse (40+ Deities)</h4>
+                <p>Thor, Odin, Loki, Freya, Tyr - Elements: Lightning, Ice, Dark. Design: Raw power and sacrifice.</p>
+            </div>
+            <div class="pantheon-card">
+                <h4><i class="fa-solid fa-sun"></i> Egyptian (35+ Deities)</h4>
+                <p>Ra, Anubis, Isis, Osiris, Thoth - Elements: Light, Fire, Earth. Design: Life, death, rebirth cycle.</p>
+            </div>
+            <div class="pantheon-card">
+                <h4><i class="fa-solid fa-bolt"></i> Greek (45+ Deities)</h4>
+                <p>Zeus, Hera, Athena, Apollo, Poseidon - Elements: Lightning, Water, Wind. Design: Archetypal heroes.</p>
+            </div>
+            <div class="pantheon-card">
+                <h4><i class="fa-solid fa-torii-gate"></i> Shinto (35+ Deities)</h4>
+                <p>Amaterasu, Susanoo, Tsukuyomi - Elements: Nature, Light, Water. Design: Harmony and kami spirits.</p>
+            </div>
+            <div class="pantheon-card">
+                <h4><i class="fa-solid fa-yin-yang"></i> Taoist (30+ Deities)</h4>
+                <p>Jade Emperor, Guan Yu, Nezha, Monkey King - Elements: Air, Mind, Chaos. Design: Balance and cultivation.</p>
+            </div>
+            <div class="pantheon-card">
+                <h4><i class="fa-solid fa-scroll"></i> Babylonian (25+ Deities)</h4>
+                <p>Marduk, Ishtar, Gilgamesh, Tiamat - Elements: Fire, Dark, Chaos. Design: Ancient might and epic tales.</p>
+            </div>
+        </div>
+
+        <h2>Tier System Design</h2>
+        <p>Our tier system tells players about rarity at a glance: <strong>UR, SSR, SR, R, Uncommon, Common</strong>. But rarity doesn't equal raw power - a well-built lower-tier team can defeat a poorly assembled high-tier one.</p>
+
+        <p>Each tier has different characteristics:</p>
+        <ul>
+            <li><strong>Stat curves:</strong> Higher tiers have better base stats but diminishing returns</li>
+            <li><strong>Skill potentials:</strong> More powerful abilities at higher tiers</li>
+            <li><strong>Acquisition rates:</strong> Balanced to make every pull exciting</li>
+        </ul>
+
+        <div class="highlight-box">
+            <p><strong>Design Philosophy:</strong> Collection goals exist for each tier. Pulling a UR feels exciting, but finding and building up an R deity can be just as satisfying.</p>
+        </div>
+
+        <h2>Elemental Strategy</h2>
+        <p>With <strong>14 elements</strong>, we created a web of strengths and weaknesses that encourages strategic thinking:</p>
+        <ul>
+            <li>Fire beats Nature, Nature beats Water, Water beats Fire</li>
+            <li>Lightning beats Wind, Wind beats Earth, Earth beats Lightning</li>
+            <li>And many more interactions across 14 elements</li>
+        </ul>
+
+        <p>Some deities have multiple elements. Some have unique interactions. This depth is what keeps combat interesting after hundreds of battles.</p>
+
+        <h2>Four Skills Per Deity</h2>
+        <p>Every deity has four skills that reflect their mythology:</p>
+        <ul>
+            <li><strong>Passive:</strong> Always-active bonuses that define the deity's role</li>
+            <li><strong>Skill 1:</strong> Basic combat ability - the bread and butter</li>
+            <li><strong>Skill 2:</strong> Advanced tactical option - for key moments</li>
+            <li><strong>Ultimate:</strong> Game-changing power move - the signature ability</li>
+        </ul>
+
+        <p>The mechanics serve the lore. Shiva's skills reflect destruction and rebirth. Thor's call down lightning. Thoth's manipulate knowledge and fate.</p>
+
+        <h2>Coming Soon: Card Art</h2>
+        <p>We're currently working on card art for all 250+ deities. This is a massive undertaking, but seeing each deity come to life visually is incredibly rewarding.</p>
+
+        <p>Our art team works closely with cultural consultants to ensure that visual representations honor the source material while creating a cohesive game aesthetic.</p>
+
+        <div class="highlight-box">
+            <p><strong>The Goal:</strong> When players see their favorite deity in-game, we want them to feel recognized and respected. That's the standard we hold ourselves to.</p>
+        </div>
+    </article>
+
+    <div class="blog-nav">
+        <a href="progression-systems.html"><i class="fa-solid fa-arrow-left"></i> Previous: Progression</a>
+        <a href="clean-architecture-backend.html">Next: Architecture <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

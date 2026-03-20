@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Development logs from Raudra Cosmos - behind the scenes look at building a mythological TCG. Tech articles on gacha systems, progression, architecture, and more.">
+    <meta name="keywords" content="game devlog, gacha game development, card game devlog, game architecture, progression systems, indie game dev">
+    <meta name="theme-color" content="#050505">
+    <meta name="author" content="Raudra Cosmos Games">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://raudracosmos.com/devlogs/">
+
+    <title>Devlogs | Behind the Scenes - Raudra Cosmos</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../tab_icon.png" sizes="any">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://raudracosmos.com/devlogs/">
+    <meta property="og:title" content="Devlogs | Behind the Scenes - Raudra Cosmos">
+    <meta property="og:description" content="Behind the scenes look at building a mythological TCG. Tech articles on gacha systems, progression, architecture, and more.">
+    <meta property="og:site_name" content="Raudra Cosmos">
+
+    <style>
+        :root {
+            --font-display: 'Orbitron', sans-serif;
+            --font-heading: 'Rajdhani', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --deep-black: #050505;
+            --rich-black: #0a0a0f;
+            --cosmic-purple: #6B5B95;
+            --fierce-orange: #FF4E50;
+            --golden-amber: #F9D423;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --text-muted: #6B6B6B;
+            --gradient-fire: linear-gradient(135deg, var(--fierce-orange) 0%, var(--golden-amber) 100%);
+            --gradient-cosmic: linear-gradient(135deg, var(--cosmic-purple) 0%, #4A90D9 100%);
+            --z-content: 10;
+        }
+
+        body {
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .devlogs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .devlogs-nav a {
+            color: var(--cosmic-purple);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .devlogs-nav a:hover {
+            color: var(--golden-amber);
+        }
+
+        .devlogs-hero {
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255,78,80,0.2);
+            border: 1px solid rgba(255,78,80,0.4);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--fierce-orange);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .devlogs-title-gradient {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            filter: drop-shadow(0 0 30px rgba(255, 78, 80, 0.4));
+            margin-bottom: 15px;
+        }
+
+        .devlogs-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .divider-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gradient-cosmic);
+        }
+
+        .divider-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--fierce-orange);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--fierce-orange);
+        }
+
+        .section-header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .section-number {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--fierce-orange);
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-number::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            width: 15px;
+            height: 1px;
+            background: var(--cosmic-purple);
+        }
+
+        .section-title-gradient {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .video-section {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .video-placeholder-enhanced {
+            background: linear-gradient(145deg, rgba(255,0,0,0.1) 0%, rgba(5,5,5,0.95) 100%);
+            border: 2px solid rgba(255,0,0,0.3);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder-enhanced:hover {
+            border-color: rgba(255,0,0,0.5);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .video-content i {
+            font-size: 4rem;
+            color: #FF0000;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(255,0,0,0.5));
+        }
+
+        .video-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .video-content p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .youtube-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+            color: white;
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .youtube-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.6);
+        }
+
+        .devlog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            position: relative;
+            z-index: var(--z-content);
+        }
+
+        .devlog-card {
+            background: linear-gradient(145deg, rgba(107,91,149,0.15) 0%, rgba(5,5,5,0.95) 100%);
+            border: 1px solid rgba(107,91,149,0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .devlog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(107,91,149,0.2);
+            border-color: rgba(249,212,35,0.3);
+        }
+
+        .card-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .tech-1 { background: linear-gradient(135deg, #6B5B95 0%, #4A90D9 100%); }
+        .tech-2 { background: linear-gradient(135deg, #FF4E50 0%, #F9D423 100%); }
+        .tech-3 { background: linear-gradient(135deg, #00CED1 0%, #4169E1 100%); }
+        .tech-4 { background: linear-gradient(135deg, #9B59B6 0%, #3498DB 100%); }
+        .tech-5 { background: linear-gradient(135deg, #E74C3C 0%, #F39C12 100%); }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(5,5,5,0.8) 100%);
+        }
+
+        .card-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--golden-amber);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .card-date, .card-read-time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-link-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--golden-amber);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .devlog-card:hover .card-link-indicator {
+            gap: 12px;
+            color: var(--fierce-orange);
+        }
+
+        @media (max-width: 768px) {
+            .devlog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Star Field Canvas -->
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- Nebula Overlay -->
+    <div class="nebula-overlay">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+
+    <nav class="devlogs-nav">
+        <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+    </nav>
+
+    <div class="devlogs-hero">
+        <span class="hero-badge">Behind the Scenes</span>
+        <h1 class="devlogs-title-gradient">Devlogs</h1>
+        <p class="devlogs-subtitle">Development Journey & Technical Insights</p>
+        <div class="hero-divider">
+            <span class="divider-line"></span>
+            <span class="divider-dot"></span>
+            <span class="divider-line"></span>
+        </div>
+    </div>
+
+    <!-- Video Devlogs Section -->
+    <section class="video-section">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title-gradient">Video Devlogs</h2>
+            <div class="hero-divider">
+                <span class="divider-line"></span>
+                <span class="divider-dot"></span>
+                <span class="divider-line"></span>
+            </div>
+            <p class="section-subtitle">Coming Soon - Feature Spotlights & Development Walkthroughs</p>
+        </div>
+        <div class="video-placeholder-enhanced">
+            <div class="video-content">
+                <i class="fa-brands fa-youtube"></i>
+                <h3>Video Content Coming Soon</h3>
+                <p>We're crafting in-depth video devlogs showcasing our development process, feature reveals, and behind-the-scenes content.</p>
+                <a href="https://www.youtube.com/@RaudraCosmos" class="youtube-cta" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span>Subscribe on YouTube</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Written Devlogs Section -->
+    <section>
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title-gradient">Written Tech Devlogs</h2>
+            <div class="hero-divider">
+                <span class="divider-line"></span>
+                <span class="divider-dot"></span>
+                <span class="divider-line"></span>
+            </div>
+            <p class="section-subtitle">Deep dives into our development journey and design philosophy</p>
+        </div>
+
+        <div class="devlog-grid">
+            <!-- Article 1: Gacha System -->
+            <a href="building-gacha-system.html" class="devlog-card">
+                <div class="card-image">
+                    <div class="image-placeholder tech-1">
+                        <span style="color: white;"><i class="fa-solid fa-dice-d20"></i></span>
+                    </div>
+                    <div class="card-overlay"></div>
+                    <span class="card-category">Tech</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-date">Feb 18, 2026</span>
+                        <span class="card-read-time">6 min read</span>
+                    </div>
+                    <h3 class="card-title">Building Our Gacha System - Fair & Secure</h3>
+                    <p class="card-excerpt">
+                        Why server-authoritative gacha matters, crypto-secure RNG, and designing a dual pity system that players can trust.
+                    </p>
+                    <span class="card-link-indicator">
+                        <span>Read More</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Article 2: Progression Systems -->
+            <a href="progression-systems.html" class="devlog-card">
+                <div class="card-image">
+                    <div class="image-placeholder tech-2">
+                        <span style="color: white;"><i class="fa-solid fa-arrow-up-right-dots"></i></span>
+                    </div>
+                    <div class="card-overlay"></div>
+                    <span class="card-category">Tech</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-date">Feb 27, 2026</span>
+                        <span class="card-read-time">5 min read</span>
+                    </div>
+                    <h3 class="card-title">Progression Systems: Level Up, Advance, Ascend</h3>
+                    <p class="card-excerpt">
+                        Three paths to power - how we designed deep progression that keeps players engaged for the long haul.
+                    </p>
+                    <span class="card-link-indicator">
+                        <span>Read More</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Article 3: Deities Collection -->
+            <a href="250-deities-pantheons.html" class="devlog-card">
+                <div class="card-image">
+                    <div class="image-placeholder tech-3">
+                        <span style="color: white;"><i class="fa-solid fa-scroll"></i></span>
+                    </div>
+                    <div class="card-overlay"></div>
+                    <span class="card-category">Design</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-date">Mar 1, 2026</span>
+                        <span class="card-read-time">4 min read</span>
+                    </div>
+                    <h3 class="card-title">250 Deities from 7 Pantheons</h3>
+                    <p class="card-excerpt">
+                        The challenge of representing 7 cultures respectfully, designing our tier system, and creating meaningful elemental interactions.
+                    </p>
+                    <span class="card-link-indicator">
+                        <span>Read More</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Article 4: Clean Architecture -->
+            <a href="clean-architecture-backend.html" class="devlog-card">
+                <div class="card-image">
+                    <div class="image-placeholder tech-4">
+                        <span style="color: white;"><i class="fa-solid fa-code"></i></span>
+                    </div>
+                    <div class="card-overlay"></div>
+                    <span class="card-category">Architecture</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-date">Mar 5, 2026</span>
+                        <span class="card-read-time">7 min read</span>
+                    </div>
+                    <h3 class="card-title">Clean Architecture in Game Backend</h3>
+                    <p class="card-excerpt">
+                        Why clean architecture matters for games, the benefits we've seen, and building for scalability from day one.
+                    </p>
+                    <span class="card-link-indicator">
+                        <span>Read More</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Article 5: Equipment Design -->
+            <a href="equipment-design.html" class="devlog-card">
+                <div class="card-image">
+                    <div class="image-placeholder tech-5">
+                        <span style="color: white;"><i class="fa-solid fa-shield-halved"></i></span>
+                    </div>
+                    <div class="card-overlay"></div>
+                    <span class="card-category">Design</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-date">Mar 10, 2026</span>
+                        <span class="card-read-time">4 min read</span>
+                    </div>
+                    <h3 class="card-title">From Concept to Collection - Equipment Design</h3>
+                    <p class="card-excerpt">
+                        Our 4-slot system philosophy, set bonuses design, and the enhancement journey from +0 to +15.
+                    </p>
+                    <span class="card-link-indicator">
+                        <span>Read More</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <script src="../script.js"></script>
+</body>
+</html>
