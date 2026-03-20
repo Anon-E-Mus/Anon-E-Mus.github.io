@@ -1416,6 +1416,27 @@ body.hovering .cursor-outer {
     background: var(--element-water);
 }
 
+/* Devlog card gradient backgrounds */
+.tech-1::before {
+    background: linear-gradient(135deg, #6B5B95 0%, #4A90D9 100%);
+}
+
+.tech-2::before {
+    background: linear-gradient(135deg, #FF4E50 0%, #F9D423 100%);
+}
+
+.tech-3::before {
+    background: linear-gradient(135deg, #00CED1 0%, #4169E1 100%);
+}
+
+.tech-4::before {
+    background: linear-gradient(135deg, #9B59B6 0%, #3498DB 100%);
+}
+
+.tech-5::before {
+    background: linear-gradient(135deg, #E74C3C 0%, #F39C12 100%);
+}
+
 .placeholder-icon {
     position: relative;
     z-index: 1;
@@ -1494,6 +1515,27 @@ body.hovering .cursor-outer {
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 20px;
+}
+
+.devlog-card-link {
+    text-decoration: none;
+    display: block;
+}
+
+.card-link-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    color: var(--golden-amber);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.devlog-card-link:hover .card-link-inline {
+    gap: 12px;
+    color: var(--fierce-orange);
 }
 
 .card-link {
