@@ -119,14 +119,13 @@
         }
 
         .blog-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px;
-            background: rgba(10, 10, 15, 0.88);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 206, 209, 0.25);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            padding: 50px;
+            background: rgba(10, 10, 15, 0.92);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: var(--z-content);
         }
@@ -198,36 +197,6 @@
             color: var(--golden-amber);
         }
 
-        .architecture-diagram {
-            background: rgba(107,91,149,0.1);
-            border: 1px solid rgba(107,91,149,0.3);
-            border-radius: 12px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .layer {
-            background: rgba(5,5,5,0.8);
-            border: 1px solid var(--cosmic-purple);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 10px auto;
-            max-width: 400px;
-        }
-
-        .layer h4 {
-            color: var(--golden-amber);
-            font-family: var(--font-heading);
-            margin-bottom: 5px;
-        }
-
-        .layer p {
-            font-size: 0.9rem;
-            margin: 0;
-            color: var(--text-secondary);
-        }
-
         .highlight-box {
             background: rgba(155, 89, 182, 0.12);
             border-left: 4px solid var(--fierce-orange);
@@ -288,108 +257,40 @@
             <p><strong>The Problem:</strong> "Spaghetti code" doesn't scale. When every piece of code knows about HTTP, databases, and business logic all at once, changing anything becomes risky.</p>
         </div>
 
-        <h2>Our Architecture Pattern</h2>
-        <p>We use hexagonal architecture with domain-driven design. In practical terms, this means organizing code into distinct layers with clear boundaries:</p>
-
-        <div class="architecture-diagram">
-            <div class="layer">
-                <h4><i class="fa-solid fa-gem"></i> Domain Layer</h4>
-                <p>Pure business entities and rules. No dependencies on the outside world.</p>
-            </div>
-            <div style="font-size: 1.5rem; color: var(--cosmic-purple); margin: 10px 0;">&uarr;</div>
-            <div class="layer">
-                <h4><i class="fa-solid fa-cogs"></i> Service Layer</h4>
-                <p>Business logic implementation. Where the "game rules" live.</p>
-            </div>
-            <div style="font-size: 1.5rem; color: var(--cosmic-purple); margin: 10px 0;">&uarr;</div>
-            <div class="layer">
-                <h4><i class="fa-solid fa-plug"></i> Adapter Layer</h4>
-                <p>HTTP handlers, database repositories, cache implementations.</p>
-            </div>
-        </div>
-
-        <h2>Layer by Layer Breakdown</h2>
-
-        <h3>Domain Layer (The Core)</h3>
-        <p>This is the heart of our application. Pure business logic, no external dependencies. What lives here?</p>
-        <ul>
-            <li>Entities: Player, Deity, Inventory, GachaResult</li>
-            <li>Value objects: Money, Health, Damage, Element</li>
-            <li>Domain errors: InsufficientFunds, InvalidDeck, PlayerNotFound</li>
-        </ul>
-
-        <p>When we write code in this layer, we don't think about HTTP or databases. We think about <em>what</em> the game should do, not <em>how</em> it's delivered.</p>
-
-        <h3>Service Layer (Use Cases)</h3>
-        <p>This layer orchestrates business logic. It's where our use cases live:</p>
-        <ul>
-            <li>SummonDeityUseCase, ClaimRewardsUseCase, StartBattleUseCase</li>
-            <li>Each use case is a class with a single responsibility</li>
-            <li>Dependencies are injected as interfaces (ports)</li>
-        </ul>
-
-        <p>The key insight: services depend on abstractions (interfaces), not concretions. This makes testing and swapping implementations trivial.</p>
-
-        <h3>Adapter Layer (Infrastructure)</h3>
-        <p>This is where we interface with the outside world:</p>
-        <ul>
-            <li><strong>Primary adapters:</strong> HTTP handlers, WebSocket controllers</li>
-            <li><strong>Secondary adapters:</strong> Database repositories, cache implementations</li>
-            <li><strong>External services:</strong> Email service, analytics, payment processing</li>
-        </ul>
-
-        <h2>Real-World Benefits We've Seen</h2>
-
-        <h3>Fast Testing Without Full Server Spin-Up</h3>
-        <p>We can unit test our gacha RNG without touching the database. We can test progression logic without starting a server. Tests run in milliseconds, not seconds.</p>
-
-        <h3>Easy to Add WebSocket Support</h3>
-        <p>When we needed real-time features, we just added a new adapter. No changes to business logic. The service layer doesn't care if a request comes from HTTP or WebSocket.</p>
-
-        <h3>Horizontal Scaling Readiness</h3>
-        <p>Our stateless API design means we can spin up more instances as player count grows. Repository abstraction means we could add read replicas or change databases without touching service code.</p>
-
-        <h3>Developer Onboarding</h3>
-        <p>New developers can understand the codebase quickly because concerns are separated. They don't have to hold the entire system in their head at once.</p>
-
-        <h2>Challenges & Trade-offs</h2>
+        <h2>How Our Architecture Is Organized</h2>
+        <p>We use a layered architecture approach that keeps different concerns separate and organized:</p>
 
         <div class="highlight-box">
-            <p><strong>Not All Sunshine:</strong> Clean architecture requires more upfront planning. Sometimes it feels like we're writing "extra code" for no immediate benefit.</p>
+            <p><strong>The Core Layer</strong> contains the fundamental game rules - how gacha works, progression calculations, combat formulas. This code doesn't know about websites or databases.</p>
         </div>
 
-        <h3>More Upfront Planning Required</h3>
-        <p>You need to think about interfaces before implementation. This can slow down initial development, but it pays off quickly.</p>
+        <p><strong>The Service Layer</strong> orchestrates game actions - summoning deities, processing battles, managing inventories. This is where gameplay actually happens.</p>
 
-        <h3>Learning Curve</h3>
-        <p>Not every developer is familiar with these patterns. We've spent time educating and pair programming to bring everyone up to speed.</p>
+        <p><strong>The Interface Layer</strong> handles all external communication - web requests, data storage, caching. This layer can be swapped out without touching game logic.</p>
 
-        <h3>When Simple IS Better</h3>
-        <p>For one-off scripts or simple utilities, clean architecture is overkill. We use it for our core game systems, but not everywhere.</p>
+        <h2>Why This Matters</h2>
 
-        <h2>Security First Approach</h2>
-        <p>Clean architecture naturally supports security best practices:</p>
-        <ul>
-            <li><strong>Server-authoritative everything:</strong> All game logic lives on the server</li>
-            <li><strong>Input validation at every layer:</strong> Never trust client input</li>
-            <li><strong>Rate limiting per endpoint:</strong> Protect against abuse</li>
-            <li><strong>Audit logging:</strong> Track all important actions</li>
-        </ul>
+        <h3>Faster Development</h3>
+        <p>When we need to add a new feature (like real-time multiplayer), we don't have to rewrite core game logic. The architecture lets us plug in new capabilities without breaking existing systems.</p>
+
+        <h3>Easier Testing</h3>
+        <p>We can test game rules independently - no need to spin up servers or databases. This means faster development and fewer bugs in production.</p>
+
+        <h3>Long-Term Maintainability</h3>
+        <p>Code stays organized as the game grows. New developers can understand and contribute without getting lost in a tangled codebase.</p>
+
+        <h2>Security Built In</h2>
+        <p>Our architecture naturally supports security best practices. All game logic runs securely on the server, with proper validation at every step. Players can't cheat by modifying client-side code because all important calculations happen server-side.</p>
 
         <h2>Would We Do It Again?</h2>
-        <p>Absolutely. Clean architecture isn't the right choice for every project, but for a long-term live service game like Raudra Cosmos, it's been invaluable.</p>
+        <p>Absolutely. The upfront investment in good architecture has already paid off countless times in faster development and fewer bugs. For a long-term live service game, building with a solid foundation from day one is invaluable.</p>
 
         <div class="highlight-box">
-            <p><strong>The Bottom Line:</strong> Every minute spent on good architecture has saved us hours of debugging and refactoring. We're not handling millions of players yet, but when we do, we'll be ready.</p>
+            <p><strong>The Bottom Line:</strong> Good architecture isn't about following trends - it's about being able to grow and evolve your game for years without getting bogged down by technical debt.</p>
         </div>
 
         <h2>What's Next</h2>
-        <p>We're continuing to refine our architecture as we learn. Future improvements include:</p>
-        <ul>
-            <li>Event-driven architecture for cross-service communication</li>
-            <li>CQRS pattern for read/write separation</li>
-            <li>More comprehensive integration testing</li>
-        </ul>
+        <p>We're always looking to improve. As the game grows, we continue to refine our systems and add new capabilities. The architecture we've built gives us the flexibility to adapt as player needs change.</p>
     </article>
 
     <div class="blog-nav">

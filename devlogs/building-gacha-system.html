@@ -119,14 +119,13 @@
         }
 
         .blog-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px;
-            background: rgba(10, 10, 15, 0.88);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 206, 209, 0.25);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            padding: 50px;
+            background: rgba(10, 10, 15, 0.92);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: var(--z-content);
         }
@@ -199,16 +198,30 @@
         }
 
         .highlight-box {
-            background: rgba(0, 206, 209, 0.12);
+            background: linear-gradient(135deg, rgba(255,78,80,0.15) 0%, rgba(5,5,5,0.9) 100%);
             border-left: 4px solid var(--fierce-orange);
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 8px;
+            padding: 25px;
+            margin: 35px 0;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 40px;
+            height: 2px;
+            background: var(--golden-amber);
+            border-radius: 2px;
+            opacity: 0.5;
         }
 
         .highlight-box p {
             margin-bottom: 0;
             color: var(--text-primary);
+            padding-left: 55px;
         }
 
         @media (max-width: 768px) {
@@ -218,7 +231,7 @@
                 text-align: center;
             }
             .blog-content {
-                padding: 25px 20px;
+                padding: 30px 25px;
             }
         }
     </style>

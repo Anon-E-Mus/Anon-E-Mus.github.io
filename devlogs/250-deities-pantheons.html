@@ -119,14 +119,13 @@
         }
 
         .blog-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px;
-            background: rgba(10, 10, 15, 0.88);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 206, 209, 0.25);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            padding: 50px;
+            background: rgba(10, 10, 15, 0.92);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: var(--z-content);
         }
@@ -231,16 +230,30 @@
         }
 
         .highlight-box {
-            background: rgba(0, 206, 209, 0.12);
+            background: linear-gradient(135deg, rgba(0,206,209,0.15) 0%, rgba(5,5,5,0.9) 100%);
             border-left: 4px solid var(--fierce-orange);
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 8px;
+            padding: 25px;
+            margin: 35px 0;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 40px;
+            height: 2px;
+            background: var(--golden-amber);
+            border-radius: 2px;
+            opacity: 0.5;
         }
 
         .highlight-box p {
             margin-bottom: 0;
             color: var(--text-primary);
+            padding-left: 55px;
         }
 
         @media (max-width: 768px) {
@@ -250,7 +263,7 @@
                 text-align: center;
             }
             .blog-content {
-                padding: 25px 20px;
+                padding: 30px 25px;
             }
             .pantheon-grid {
                 grid-template-columns: 1fr;
@@ -284,14 +297,12 @@
     </header>
 
     <article class="blog-content">
-        <p>One of our biggest challenges - and proudest achievements - is representing 7 different cultural mythologies respectfully and accurately. Here's how we approached bringing 250+ deities to life in Raudra Cosmos.</p>
+        <p>One of our biggest challenges - and proudest achievements - is representing 7 different cultural mythologies in one cohesive game. Here's how we approached bringing 250+ deities to life in Raudra Cosmos.</p>
 
-        <h2>Cultural Respect First</h2>
-        <p>Before we designed a single deity, we spent <strong>8+ months</strong> on research and consultation. This wasn't about grabbing cool-looking gods and throwing them in a game. It's about understanding what these deities meant to the people who worshipped them, and honoring that legacy.</p>
+        <h2>Our Approach to Cultural Representation</h2>
+        <p>Bringing 250+ deities from 7 different mythologies into one game is a significant creative challenge. We've studied these mythological traditions extensively to understand what makes each pantheon unique - their elemental associations, divine powers, stories, and the relationships between deities.</p>
 
-        <div class="highlight-box">
-            <p><strong>Our Commitment:</strong> We consulted with cultural experts, read primary sources, and engaged with community members from each culture to ensure authentic representation.</p>
-        </div>
+        <p>Each pantheon in Raudra Cosmos brings something distinct to the game, from the raw power of Norse thunder gods to the cosmic duality of Hindu deities. Our goal is to create balanced, engaging gameplay while honoring the source material that has inspired people for millennia.</p>
 
         <h2>The Seven Pantheons</h2>
         <p>Our 7 pantheons represent some of the world's richest mythological traditions:</p>
@@ -362,10 +373,10 @@
 
         <p>The mechanics serve the lore. Shiva's skills reflect destruction and rebirth. Thor's call down lightning. Thoth's manipulate knowledge and fate.</p>
 
-        <h2>Coming Soon: Card Art</h2>
-        <p>We're currently working on card art for all 250+ deities. This is a massive undertaking, but seeing each deity come to life visually is incredibly rewarding.</p>
+        <h2>Bringing Deities to Life</h2>
+        <p>Each deity in the game has four unique skills that reflect their mythology - from Shiva's destruction and rebirth themes to Thor's legendary thunder. The mechanics serve the lore, creating authentic gameplay experiences.</p>
 
-        <p>Our art team works closely with cultural consultants to ensure that visual representations honor the source material while creating a cohesive game aesthetic.</p>
+        <p>We're currently working on the visual design for all 250+ deities. This is a massive undertaking, but seeing each deity come to life in the game is incredibly rewarding.</p>
 
         <div class="highlight-box">
             <p><strong>The Goal:</strong> When players see their favorite deity in-game, we want them to feel recognized and respected. That's the standard we hold ourselves to.</p>
