@@ -1870,7 +1870,251 @@ body.hovering .cursor-outer {
 }
 
 /* ============================================
-   16. NEWSLETTER SECTION
+   16. WHY PLAY SECTION
+   ============================================ */
+
+.why-play-section {
+    padding: var(--section-padding);
+    position: relative;
+    z-index: var(--z-content);
+}
+
+.why-play-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.why-play-intro,
+.why-play-outro {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.why-play-list {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.why-play-list li {
+    padding: 15px 0;
+    padding-left: 45px;
+    position: relative;
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.why-play-list li:last-child {
+    border-bottom: none;
+}
+
+.why-play-list li i {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--yellow-amber);
+    font-size: var(--text-lg);
+    filter: drop-shadow(0 0 10px rgba(249, 212, 35, 0.5));
+}
+
+.why-play-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.highlight-card {
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.highlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255,78,80,0.3), rgba(0,206,201,0.3), rgba(249,212,35,0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 30px 70px rgba(107,91,149,0.3),
+        0 0 50px rgba(249,212,35,0.15);
+}
+
+.highlight-card:hover::before {
+    opacity: 1;
+}
+
+.highlight-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.highlight-card i {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--orange-red), var(--yellow-amber));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.highlight-card h4 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.highlight-card p {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+}
+
+/* ============================================
+   17. FAQ SECTION
+   ============================================ */
+
+.faq-section {
+    padding: var(--section-padding);
+    position: relative;
+    z-index: var(--z-content);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header .section-title {
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--orange-red), var(--yellow-amber), var(--cyan-bright));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.section-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.faq-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--orange-red), var(--yellow-amber), var(--cyan-bright));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 30px 70px rgba(107,91,149,0.3),
+        0 0 50px rgba(249,212,35,0.15);
+}
+
+.faq-item:hover::before {
+    opacity: 1;
+}
+
+.faq-question {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--yellow-amber);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.faq-question::before {
+    content: 'Q.';
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--orange-red);
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.faq-answer {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    padding-left: 32px;
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
+/* ============================================
+   17. NEWSLETTER SECTION
    ============================================ */
 
 .newsletter {
@@ -2468,6 +2712,48 @@ body.hovering .cursor-outer {
         padding: 12px 16px;
         font-size: var(--text-sm);
         gap: 8px;
+    }
+
+    /* Why Play Section Responsive */
+    .why-play-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .why-play-list li {
+        padding: 12px 0;
+        padding-left: 35px;
+        font-size: var(--text-sm);
+    }
+
+    .highlight-card {
+        padding: 20px;
+    }
+
+    .highlight-card i {
+        font-size: 2rem;
+    }
+
+    /* FAQ Section Responsive */
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .faq-item {
+        padding: 20px;
+    }
+
+    .faq-question {
+        font-size: var(--text-base);
+    }
+
+    .section-header .section-title {
+        font-size: var(--text-3xl);
+    }
+
+    .section-subtitle {
+        font-size: var(--text-base);
     }
 
     .newsletter-title {
